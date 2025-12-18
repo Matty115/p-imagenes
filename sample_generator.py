@@ -4,14 +4,14 @@ import qrcode
 from pathlib import Path
 import random
 
-output_folder = Path("/home/matty/CCU/P-Imágenes/Imágenes")
+output_folder = Path("C:\\Users\\msandovalk\\Documents\\p-imagenes\\Imagenes")
 output_folder.mkdir(parents=True, exist_ok=True)
 
 for f in output_folder.glob("*"):
     if f.is_file():
         f.unlink()
 
-N = 100
+N = 0
 img, pdf, html = 1, 1, 1
 
 for i in range(N):
@@ -24,7 +24,7 @@ for i in range(N):
         url = f"https://example.com/page_{html}.html"
         html += 1
     else:
-        url = f"https://httpbin.org/image/png?img={img}"
+        url = f"https://placehold.co/256x256/png?text=IMG_{img}"
         img += 1
 
     qr = qrcode.make(url)
