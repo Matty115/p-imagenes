@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 import cv2
 import requests
 from pyzbar.pyzbar import decode
@@ -48,12 +49,75 @@ def decode_qr_code(folder_path):
 
     return data
 
-def htmlHandler(soup):
+def classic_extraction(soup):
+    PRICES_THRESHOLD = 10
+    KEYWORD_THRESHOLD = 3
+
+    for tag in soup(['script', 'style']):
+        tag.decompose()
+
+    text = soup.get_text(separator=' ', strip=True)
+
+    price_pattern = r"([$€₲]|(CLP|USD|EUR|COP|ARS|UYU|BOL|PYG))?\s*(\d{1,3}([.,]\d{3})*[.,]\d{2,3}|\d{3,})\s*([$€₲]|(CLP|USD|EUR|COP|ARS|UYU|BOL|PYG))?"
+    prices = list(re.finditer(price_pattern, text, flags=re.IGNORECASE))
+    price_count = len(prices)
+
+    keywords = ['corona', 'sol', 'heineken', 'stella artois'] # necesidad de listado oficial
+    keyword_hits = sum(1 for kw in keywords if kw.lower() in text.lower())
+
+    recognized = price_count >= PRICES_THRESHOLD or keyword_hits >= KEYWORD_THRESHOLD
+    if not recognized:
+        return {
+        'recognized': False,
+        'items': [],
+        'stats': {
+            'price_count': price_count,
+            'keyword_hits': keyword_hits,
+            'items_found': 0
+        }
+    }
+
+    def item_info(element):
+        item_class = element.get('class')
+        text_el = element.get_text(separator=' ', strip=True)
+        matches = re.findall(price_pattern, text_el)
+        return item_class, text_el, matches
+
+    items = []
+
+    # Búsqueda en listas y tablas
+    for el in soup.find_all(['li', 'tr', 'div']):
+        text_block = el.get_text(separator=' ', strip=True)
+        if 20 < len(text_block) < 500:
+            continue
+        match_count = sum(1 for _ in re.finditer(price_pattern, text_block, flags=re.IGNORECASE))
+        if match_count >= 1:
+            item_class, item_text, item_matches = item_info(el)
+            if item_matches != []:
+                items.append({'class': item_class, 'text': item_text, 'matches': item_matches})
+
+    # Fallback: contexto de precios si no se encontraron items
+    if not items:
+        for match in prices:
+            ctx_start = max(0, match.start() - 50)
+            ctx_end = match.end() + 50
+            context = text[ctx_start:ctx_end].strip()
+            items.append({'class': f'Contexto entre {ctx_start}-{ctx_end}', 'text': context, 'matches': [match.group(0)]})
+
+    return {
+        'recognized': True,
+        'items': items,
+        'stats': {
+            'price_count': price_count,
+            'keyword_hits': keyword_hits,
+            'items_found': len(items)
+        }
+    }
+
+def html_handler(soup):
     # Ejemplo simple: extraer todos los enlaces en el HTML
-    links = []
-    for a in soup.find_all('a', href=True):
-        links.append(a['href'])
-    return links
+    out = classic_extraction(soup)
+    return out
 
 def url_scraping(url):
     try:
@@ -63,16 +127,9 @@ def url_scraping(url):
             
             # Extraer información útil del HTML
             content_type = response.headers.get('Content-Type', '').split(';')[0]
-            if 'berenguer' in url:
-                print(response.text)
-            #if 'text/html' in content_type:
-            #    out = htmlHandler(soup)
-
-            ## Potencialmente necesario para scraping
-            #title = soup.find('title')
-            #title_text = title.get_text().strip() if title else "Sin título"
-            
-            # agregar más extracción de datos con scraping?
+            if 'text/html' in content_type:
+                scrap = html_handler(soup)
+                return {'content_type': content_type, 'scrap': scrap}
 
             return content_type
         else:
@@ -87,13 +144,13 @@ if __name__ == "__main__":
     image_path = "C:\\Users\\msandovalk\\Documents\\p-imagenes\\Imagenes" # carpeta local
     qr_data = decode_qr_code(image_path) # Procesamiento del batch
     for name, data in qr_data:
-        if data == []:
-            print(f"{name}: NO LINK")
+        if data == [] or name != "sample1.jpg": # luego volver
+            #print(f"{name}: NO LINK")
+            continue
         else:
             url = data[0].data.decode("utf-8")
-            urlType = url_scraping(url) # La salida no será única si se añade exitosamente el scraping
-            # Toda esta data requiere un preprocesamiento para después poder ser utilizado
-            print(f"{name}: {url}, Tipo: {urlType}")
+            scrap = url_scraping(url) # La salida no será única si se añade exitosamente el scraping
+            print(f"{name}: {url} -> {scrap}")
 
 ### NOTA: Para poder extraer contentido deseado, probablemente hay que hacer un esfuerzo mayor en los html.
 ### Esto porque a veces requieren simplemente revisar el html, otras veces clickear para desplegar contenido,
