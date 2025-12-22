@@ -1,0 +1,37 @@
+URL: https://sites.google.com/view/beneventoresto/men%C3%BA?authuser=0
+Class: ['mYVXT']
+Text: Mollejitas crocantes con mézclum(De rúcula, tomates secos y pipas de girasol)$18.000.-Bastones de Mozzarella$22.000.-Rabastiernizadascon limón$22.000.-
+
+Class: ['mYVXT']
+Text: Caesarcon pollo grille, croutons, queso parmesano$19.000.-De la HuertaLechuga, radicheta, zanahoria, tomate, remolacha, huevo, jamón, daditos  de mozzarella$19.000.-BeneventoMix de verdes, pollo salteado en oliva y sesamo, tomates cherry, lonjas de queso parmesano, nueves y almendras tostadas$20.000.-SalmónMix de verdes, salmón ahumado, queso brie, palta, semillas, huevo a la plancha y vinagreta$24.000.-
+
+Class: ['mYVXT']
+Text: HamburguesaClásicaMedallón de Carne con Pan de Papa y Cheddar$20.000.-Hamburguesa CompletaMedallón de Carne con Pan de Papa, Cheddar, Panceta, Lechuga, Tomate y Huevo Frito$24.000.-Hamburguesa VeggieMedallón de Lenteja, Pan de Papa, Lechuga, Tomate y Cheddar$20.000.-De SalmónPan de Ciabatta con Queso Crema, Rúcula, Palta y Salmón Ahumado$28.000.-Todos los Sandwiches vienen acompañados con una guarnición de papas fritas o coleslaw
+
+Class: ['mYVXT']
+Text: Raviolones de pollo y verduraCon salsa pomodoro$22.000.-Raviolones de Ricota, Nuez y ParmesanoCon Salsa Mixta/Rosa$22.000.-Sorrentinos de calabazaCon crema de hongos y verdeo$22.000.-Sorrentinos  de  jamón y mozzarellaCon salsa mediterránea$24.000.-Opciones de salsas: Crema, bolognesa, salsa rosa, salteado de verduras de estación.
+
+Class: ['mYVXT']
+Text: Ojo de bifePimientos y cebollas glaseadas, rúcula, cherrys confitados y pesto$25.000.-Pechuguita grillesobre calabaza asada y mézclum de verdes$22.000.-Bondiola Tiernizadacon salsa de mostaza y miel y acompañado con puré de batata$24.000.-
+
+Class: ['mYVXT']
+Text: Mix de achuras2 personas$30.000.-Ojo de Bife$22.000.-Pollo Deshuesado$20.000.-Chorizo$9.000.-Todos los cortes vienen acompañados con una Guarnición a elección.
+
+Class: ['mYVXT']
+Text: Puré de papas - calabaza$8.000.-Papas fritas$8.000.-Vegetales grillados$8.000.-
+
+Class: ['mYVXT']
+Text: Agua$2.800.-Aguas saborizadas$2.800.-Gaseosa$2.800.-Jugo exprimido$7.500.-Limonada(jarra)$9.000.-Sol$5.000.-Heineken$6.000.-Corona$7.000.-Stella Artois$6.500.-
+
+Class: ['mYVXT']
+Text: Café en Jarrito$2.800.-Café Chico$2.500Café Doble$4.500.-Café con leche$4.500.-Capuccino$7.500.-Submarino$7.500.-Variedad de Tés$2.500.-Adicional de leche$700.-Adicional de crema$800.-
+
+Class: ['mYVXT']
+Text: Crumble de manzana con helado de vainilla$9.000.-Panqueques deDulce de leche$9.000.-Copa BrownieBase de Brownie, Bocha de DDL, merenguitos y salsa de chocolate$10.000.-Volcán de chocolatesobre crema inglesa yshot de frutos$10.000.-Bochas de Helado x2$9.000.-Benevento Tentación$10.000.-Ensalada de Frutas$9.000.-
+
+Class: ['mYVXT']
+Text: Valor del cubierto $1.000 -Adicional por platos compartidos $8.000
+
+Class: ['mYVXT']
+Text: 2020. Diseñado por Mery Sackmann.
+

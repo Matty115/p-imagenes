@@ -1,4 +1,4 @@
-# Descarable apenas hayan casos reales
+# Código en desuso
 
 import qrcode
 from pathlib import Path

@@ -1,0 +1,54 @@
+URL: https://queresto.com/yungacafe?b=P0CQ&ref=qr
+Class: ['store-header', 'ring-blue-600']
+Text: YUNGA CaféYUNGA Café🕒HorariosHoyCerradoDonde estamosChubut 406Abrir MapsMenúCAFÉTÉ.PLATITOS SALADOSPLATOS ALMUERZO (hasta 16:30 hs)DULCEBEBIDASINFUSIONES especialesBRUNCH (todos los días 11-17:30 hs)
+
+Class: ['category-block']
+Text: CAFÉEn YUNGA usamos solamente leche de origen vegetal. Podes pedirlo frío!Jarrita de leche de almendras$ 2000Espresso30 ml de extracción. Corto e intenso.
+Puede ser cortado.$ 4000LungoEspresso con agua.$ 4000DoppioEspresso doble.$ 6000Americano (2 shots )Base de agua + doble espresso.$ 6000CapucchinoEspresso + leche$ 6000LatteEspresso con leche.$ 6000Flat-WhiteDoppio + leche.$ 7000submarino$ 6000
+
+Class: ['category-block']
+Text: TÉ.Selección de blends verdes, negros, azules.ROJIZO (Tentuh)Mezcla de té rojo con manzana, pera e hibiscus. Sabor coco.$ 4500NEGRO (Tentuh)Mezcla de té negro con especias.$ 4500EARL GREY (Tentuh)TE NEGRO CON PETALOS DE ACIANO, SABOR BERGAMOTA$ 4500VERDE (Tentuh)Frutas y vainilla$ 4500Manzanilla$ 3000Te Earl grey$ 3000Te negro clasico Inti zen$ 3000te verde chai Inti zen$ 3000
+
+Class: ['category-block']
+Text: PLATITOS SALADOSChipa de queso+ dip de mermelada de tomate$ 7500Sandwich napolitanoQueso, tomate asado, pesto.$ 12000Avocado Toast.palta, tomate cherry asado, cebolla encurtida, lima. En pan sin TACC.$ 12000Sandwich de lomito & quesolomito natural, queso, pan sin TACC$ 13000Tostada de huevo revuelto y palta.queso de cajú, huevo revuelto, palta slice, mix de semillas. En pan sin TACC.$ 13500bowl de huevos revueltospan de molde sin tacc, huevos revueltos, palta, tomate confitado y dip de queso de caju$ 16000Sandwich hongos barbacoamix de hongos, barbacoa casera , coleslaw$ 16000Taquitotortilla de maiz nixtamalizada, roast-beef braseado, salsa taquera, cebolla encurtida, cilantro, queso de caju, lima.$ 18500
+
+Class: ['category-block']
+Text: PLATOS ALMUERZO (hasta 16:30 hs)Quiche de tofu y hongospuerro, esparragos, portobellos, tofu, mostaza, vino blanco. Con ensalada
+sin TACC$ 19500Sandwich de milanesa de portobelloportobello rebozado sin gluten, lechuga, perejil, tomate, pickles de cebolla
+Incluye Chips de batata$ 21000Mbejuqueso, huevo poche, tomate confitado, cebolla encurtida, palta, esparrago, cilantro.$ 21000Rainbow SaladTofu marinado, Hongos BBQ, palta, yogurt caju, cebolla caramelizada, lenteja turca, verdes, tomate confitado, hummus, vegetal de estación.
+
+(pueden variar los ingredientes según disponibilidad)$ 23500Bowl Asiatico (omnivoro)pastron, huevo (opcional vegano con hongos BBQ) palta, arroz yamani, queso de cajú, kimchi, cebolla encurtida, pickles de pepino, verdes, fruta de estacion, vegetales asados.$ 23500Ensalada CaesarLechuga , kale, croutons, cherry confitado, salsa caesar, alcaparras.
+Opcional: Tofu rebozado/ Shio koji tofu a la plancha.$ 19700
+
+Class: ['category-block']
+Text: DULCETrufas (x 2)chocolate, mani, almendras, coco.
+Sin azúcar$ 2500Pepas (x2)2 unidades
+almendras, fruta desecada.
+SIN TACC, SIN AZUCAR$ 5000cookie de pistachochocolate, manzana, pistacho.$ 4500Cookie de chipsalgarroba, trigo sarraceno, chocolate amargo.$ 4500Budin de bananaBanana, nueces, pasas de uva$ 6200Tostadas con queso y mermeladaPan sin gluten, queso crema de caju, mermelada de ciruela.$ 7600Alfajor de mousse.algarroba blanca, trigo sarraceno, chocolate amargo.$ 7500Brownie.Cacao noir, trigo sarraceno, chocolate amargo, mani$ 8000Cheesecake de frutos rojostofu, caju, mermelada, arandanos$ 8500Torta PistatchaTofu,caju,pistacho, matcha, ciruela$ 10200Marquisse raw de chocolate amargo.Cacao noir, mani, pasas, mermelada de remolacha.$ 8500Carrot-cake.zanahoria, trigo sarraceno, miel de caña, canela, jengibre, nuez moscada.
+cajú, naranja.$ 11500Carrot cake mini =)Versión mini de la carrot cake de yunga.
+Rinde 6 porciones.
+por pedido anticipado$ 52000
+
+Class: ['category-block']
+Text: BEBIDASAgua con gasAgua mineral gasificada$ 4500Agua sin gas$ 4500Limonada con menta y jengibre$ 4500Exprimido de naranjasVaso de jugo recién exprimido de naranjas.$ 6500kombucha pomelo y hibiscus$ 7500kombucha Jengibre & Aloysialima (jazmin + reishi); mandarina verde (manzanilla + melena de león); yerba mate (bergamota + moringa)$ 7500Vermut VestaBebida alcohólica. Tenemos Seco y Rosso$ 7500Licuado de frutasopciones:
+banana, frutilla, naranja, manzana, durazno, naranja.$ 8500Copa de vino Tilia OrganicoCopa de vino Tilia organico de Catena Zapata
+Malbec
+cabernet Sauvignon
+chardonnay$ 6000Botella Tilia OrganicoOpciones: 
+Malbec
+cabernet Sauvignon
+chardonnay$ 16000kombucha Suico Coriando & Cúrcuma$ 7500kombucha adap. Lima Jazmín + Reishiv$ 8500kombucha adaptogenos. Mandarina Verde$ 8500kombucha adaptogenos Yerba Mate$ 8500
+
+Class: ['category-block']
+Text: INFUSIONES especialessin cafeinaMatcha LatteInfusión de té verde a base de leche de almendras.$ 8500Golden milkcùrcuma, canela, cardamomo, pimienta negra, vainilla.$ 8500Pink LatteInfusión de remolacha con leche de almendras.$ 7000
+
+Class: ['category-block']
+Text: BRUNCH (todos los días 11-17:30 hs)degustación para 2 personas. 2 PLATITOS SALADOS, 2 DULCES, 2 INFUSIONESBrunch para dos2 platitos salados.
+2 platitos dulces.
+2 infusiones o bebidas.
+
+de miércoles a domingos de 11 a 17:30$ 51000
+
+Class: ['store-footer']
+Text: YUNGA CaféUbicaciónPrincipalChubut 406, Pilar, Buenos Aires© 2025 YUNGA CaféHecho con ❤️ usandoQueResto.com
+

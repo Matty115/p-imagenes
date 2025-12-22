@@ -1,0 +1,590 @@
+URL: https://menu.fu.do/sephrachocolates/qr-menu
+Class: ['product']
+Text: Sin StockBRUNCH SEPHRABrunch para compartir.
+Contiene: 2 infusiones a elección, 1 alfajor a elección, 1 chipa de jamón y queso, 2 lunnet, 2 porciones de torta a elección. *Sujeto a disponibilidad del día*$ 39.450,00Sin impuestos nacionales:  $ 32.603,31
+
+Class: ['product']
+Text: Sin StockBRUNCH SANFERBrunch para compartir.
+Contiene: 2 infusiones a elección, 1 panini mediterráneo, 1 árabe de jamón y queso ó árabe de queso y tomate, 1 porción de torta, 1 cookie.
+*Sujeto a disponibilidad del día*$ 42.900,00Sin impuestos nacionales:  $ 35.454,55
+
+Class: ['product']
+Text: Sin StockBRUNCH CLASICOBrunch para compartir.
+Contiene: 2 infusiones a elección, 1 porción de torta a elección, 1 porción de budín a elección, 2 medialunas de manteca, 4 mini tostados de jamón y queso. 
+*Sujeto a disponibilidad del día*$ 21.900,00Sin impuestos nacionales:  $ 18.099,17
+
+Class: ['product']
+Text: Sin StockPan Dulce 1kg$ 39.900,00Sin impuestos nacionales:  $ 32.975,21
+
+Class: ['product']
+Text: Sin StockPan Dulce 1/2$ 21.900,00Sin impuestos nacionales:  $ 18.099,17
+
+Class: ['product']
+Text: Sin StockPan Dulce 1/4$ 14.900,00Sin impuestos nacionales:  $ 12.314,05
+
+Class: ['product']
+Text: Sin StockPromo TostadosInfusión a elección( café con leche, exprimido, té/té con leche, limonada) con tostado de miga.$ 12.490,00Sin impuestos nacionales:  $ 10.322,31
+
+Class: ['product']
+Text: Sin StockPromo TortaInfusión a elección( café con leche, exprimido, té/té con leche, limonada) más una porción de torta a elección.$ 12.490,00Sin impuestos nacionales:  $ 10.322,31
+
+Class: ['product']
+Text: Sin StockPromo Medialunas con jyqInfusión a elección( café con leche, exprimido, té/té con leche, limonada) más dos medialunas con jamón y queso.$ 11.290,00Sin impuestos nacionales:  $ 9.330,58
+
+Class: ['product']
+Text: Sin StockAvocado toastInfusión a elección( café con leche, exprimido, té/té con leche, limonada) porción tostadas de pan artesanal con queso blanco, palta, huevo revuelto y mix de semillas.$ 11.490,00Sin impuestos nacionales:  $ 9.495,87
+
+Class: ['product']
+Text: Sin StockPromo Lightcafé con leche o lágrima, más tostadas de pan de campo con queso blanco y mermelada$ 7.990,00Sin impuestos nacionales:  $ 6.603,31
+
+Class: ['product']
+Text: Sin StockPromo Huevo revueltoInfusión a elección( café con leche, exprimido, té/té con leche, limonada) más una tostadas con huevos revueltos.$ 9.890,00Sin impuestos nacionales:  $ 8.173,55
+
+Class: ['product']
+Text: Sin StockPromo AmericanoJarrito solo, cortado o lágrima con una medialuna.$ 3.390,00Sin impuestos nacionales:  $ 2.801,65
+
+Class: ['product']
+Text: Sin StockPromo budincafe americano/ cortado/lagrima, te con una porcion de budín a elección$ 6.990,00Sin impuestos nacionales:  $ 5.776,86
+
+Class: ['product']
+Text: Sin StockPromo Café con lecheCafé con leche o lágrima más dos medialunas de manteca.$ 5.390,00Sin impuestos nacionales:  $ 4.454,55
+
+Class: ['product']
+Text: Sin StockPromo Café con leche sin TACC$ 9.009,00Sin impuestos nacionales:  $ 7.445,45
+
+Class: ['product']
+Text: Sin StockPromo AlmuerzoTarta con ensalada o ensalada especial a elección más bebida y café.$ 13.990,00Sin impuestos nacionales:  $ 11.561,98
+
+Class: ['product']
+Text: Sin StockPromo Almuerzo sandwich especialSandwich especial a elección más bebida y café.$ 15.990,00Sin impuestos nacionales:  $ 13.214,88
+
+Class: ['product']
+Text: Sin StockPromo muni$ 8.000,00Sin impuestos nacionales:  $ 6.611,57
+
+Class: ['product']
+Text: Sin StockPromo finde$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockTéEn saquito Distintos Blenders$ 2.950,00Sin impuestos nacionales:  $ 2.438,02
+
+Class: ['product']
+Text: Sin StockCaféPocillo tradicional$ 3.150,00Sin impuestos nacionales:  $ 2.603,31
+
+Class: ['product']
+Text: Sin StockCafé AmericanoJarrito, solo/cortado/lagrima$ 3.150,00Sin impuestos nacionales:  $ 2.603,31
+
+Class: ['product']
+Text: Sin StockCafé con cremaPosillo/jarrito$ 3.450,00Sin impuestos nacionales:  $ 2.851,24
+
+Class: ['product']
+Text: Sin StockCafé con LecheTazon Tradicional o lagrima$ 4.190,00Sin impuestos nacionales:  $ 3.462,81
+
+Class: ['product']
+Text: Sin StockCafé DobleTaza solo/cortado$ 4.590,00Sin impuestos nacionales:  $ 3.793,39
+
+Class: ['product']
+Text: Sin StockCafé Doble c/cremaTaza doble shot con crema$ 4.990,00Sin impuestos nacionales:  $ 4.123,97
+
+Class: ['product']
+Text: Sin StockTé en hebrasBlenders importados y no tradicionales$ 4.290,00Sin impuestos nacionales:  $ 3.545,45
+
+Class: ['product']
+Text: Sin StockCafé con leche de almendrasTazon Tradicional o lagrima$ 4.190,00Sin impuestos nacionales:  $ 3.462,81
+
+Class: ['product']
+Text: Sin StockSubmarinoLeche Chocolate$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin StockCafé irlandesCafé whiskie, crema y chocolate$ 6.990,00Sin impuestos nacionales:  $ 5.776,86
+
+Class: ['product']
+Text: Sin StockCafé BombomCafé, leche condensada y canela$ 6.690,00Sin impuestos nacionales:  $ 5.528,93
+
+Class: ['product']
+Text: Sin StockSubmarino Doble ChocolateLeche, 2 barras de chocolate$ 5.990,00Sin impuestos nacionales:  $ 4.950,41
+
+Class: ['product']
+Text: Sin StockCappuccino a la ItalianaCafé, leche, Crema, Canela y chocolate$ 5.590,00Sin impuestos nacionales:  $ 4.619,83
+
+Class: ['product']
+Text: Sin StockSubmarino con leche de almendrasLeche y chocolate$ 5.990,00Sin impuestos nacionales:  $ 4.950,41
+
+Class: ['product']
+Text: Sin StockCafé doble con leche de almendrasDoble shot de cafe con leche de almendras$ 5.830,00Sin impuestos nacionales:  $ 4.818,18
+
+Class: ['product']
+Text: Sin StockSubmarino doble con leche de almendrasLeche y doble chocolate$ 5.990,00Sin impuestos nacionales:  $ 4.950,41
+
+Class: ['product']
+Text: Sin StockAmericano con leche de almendrasJarrito, solo/cortado/lagrima$ 4.590,00Sin impuestos nacionales:  $ 3.793,39
+
+Class: ['product']
+Text: Sin StockCafé bombón con leche de almendrasCafé, leche de almendras y leche condensada$ 6.690,00Sin impuestos nacionales:  $ 5.528,93
+
+Class: ['product']
+Text: Sin StockCappuccino con leche de almendrasItaliano$ 5.590,00Sin impuestos nacionales:  $ 4.619,83
+
+Class: ['product']
+Text: Sin StockTé con leche/limón$ 3.990,00Sin impuestos nacionales:  $ 3.297,52
+
+Class: ['product']
+Text: Sin StockLágrima Jarrito$ 3.190,00Sin impuestos nacionales:  $ 2.636,36
+
+Class: ['product']
+Text: Sin StockLágrima Cafe con Leche$ 4.190,00Sin impuestos nacionales:  $ 3.462,81
+
+Class: ['product']
+Text: Sin StockAdicional leche de almendra$ 590,00Sin impuestos nacionales:  $ 487,60
+
+Class: ['product']
+Text: Sin StockCortado Jarrito$ 3.190,00Sin impuestos nacionales:  $ 2.636,36
+
+Class: ['product']
+Text: Sin StockAdicional$ 390,00Sin impuestos nacionales:  $ 322,31
+
+Class: ['product']
+Text: Sin StockChocolatada$ 3.690,00Sin impuestos nacionales:  $ 3.049,59
+
+Class: ['product']
+Text: Sin StockCafé para llevar$ 3.190,00Sin impuestos nacionales:  $ 2.636,36
+
+Class: ['product']
+Text: Sin StockAdicional chocolate$ 450,00Sin impuestos nacionales:  $ 371,90
+
+Class: ['product']
+Text: Sin StockAdicional caramelo$ 450,00Sin impuestos nacionales:  $ 371,90
+
+Class: ['product']
+Text: Sin StockCappuccino de dulce de leche$ 5.750,00Sin impuestos nacionales:  $ 4.752,07
+
+Class: ['product']
+Text: Sin StockCafé frio de frutilla$ 4.684,25Sin impuestos nacionales:  $ 3.871,28
+
+Class: ['product']
+Text: Sin StockAdicional frutilla$ 450,00Sin impuestos nacionales:  $ 371,90
+
+Class: ['product']
+Text: Sin StockAdicional leche deslactosada$ 200,00Sin impuestos nacionales:  $ 165,29
+
+Class: ['product']
+Text: Sin StockCappuccino de PistachoShot de café, leche suavemente cremosa, crema santilly y pistacho$ 6.750,00Sin impuestos nacionales:  $ 5.578,51
+
+Class: ['items', 'orderingDisabled--no-pointer-events']
+Text: Sin StockCafé frío$ 4.190,00Sin impuestos nacionales:  $ 3.462,81Sin StockCafé frío de chocolateCafé frio maserado con salsa de chocolate$ 5.490,00Sin impuestos nacionales:  $ 4.537,19Sin StockCafé frío con salsa de frutillaCafé frio maserado con salsa de frutilla$ 5.490,00Sin impuestos nacionales:  $ 4.537,19Sin StockCafé frío con salsa de DDLCafé frio maserado con salsa de dulce de leche$ 5.490,00Sin impuestos nacionales:  $ 4.537,19Sin StockCafé frío energizanteCafé frio maserado con un toque exacto de jugo de naranja recién exprimido$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin StockExprimido de NaranjaJugo natural recien exprimido$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin StockExprimido de Naranja, Mango y MaracuyaJugo natural recien exprimido$ 7.390,00Sin impuestos nacionales:  $ 6.107,44
+
+Class: ['product']
+Text: Sin StockLimonadaJugo de limon natural Menta y Jenjibre$ 4.950,00Sin impuestos nacionales:  $ 4.090,91
+
+Class: ['product']
+Text: Sin StockLicuado de Frutos rojos y NaranjaFrutos Rojos frecos y Jugo de naranja exprimido$ 7.690,00Sin impuestos nacionales:  $ 6.355,37
+
+Class: ['product']
+Text: Sin StockLicuado de Banana con lecheBanana, Leche, Azucar y hielo$ 6.150,00Sin impuestos nacionales:  $ 5.082,64
+
+Class: ['product']
+Text: Sin StockLicuado - Banana con leche de almendrasBanana Leche de almendras hielo$ 7.690,00Sin impuestos nacionales:  $ 6.355,37
+
+Class: ['product']
+Text: Sin StockLicuado - FrambuesaCon Agua$ 7.690,00Sin impuestos nacionales:  $ 6.355,37
+
+Class: ['product']
+Text: Sin StockMilkshake - Chocolate$ 7.690,00Sin impuestos nacionales:  $ 6.355,37
+
+Class: ['product']
+Text: Sin StockMilkshake -  Dulce de leche$ 7.690,00Sin impuestos nacionales:  $ 6.355,37
+
+Class: ['product']
+Text: Sin StockMilkshake - Frutilla$ 7.690,00Sin impuestos nacionales:  $ 6.355,37
+
+Class: ['product']
+Text: Sin StockMilkshake - Americana$ 7.690,00Sin impuestos nacionales:  $ 6.355,37
+
+Class: ['product']
+Text: Sin StockTrago de Frutos RojosHelado americana con frutos Rojos$ 7.690,00Sin impuestos nacionales:  $ 6.355,37
+
+Class: ['product']
+Text: Sin StockTrago Tuti FruttiHelado de Frutilla, maracuya y limon$ 7.690,00Sin impuestos nacionales:  $ 6.355,37
+
+Class: ['product']
+Text: Sin StockCoffe HeladoBochas de Helado Americana y Café$ 7.390,00Sin impuestos nacionales:  $ 6.107,44
+
+Class: ['product']
+Text: Sin StockMedialuna de Manteca$ 1.090,00Sin impuestos nacionales:  $ 900,83
+
+Class: ['product']
+Text: Sin StockAlfajor Almendras$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin StockAlfajor Blanco$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin StockAlfajor Corazón$ 4.790,00Sin impuestos nacionales:  $ 3.958,68
+
+Class: ['product']
+Text: Sin StockAlfajor Maicena$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin StockAlfajor Negro$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin StockBombones unidad$ 1.000,00Sin impuestos nacionales:  $ 826,45
+
+Class: ['product']
+Text: Sin StockBrownie - Cuadradito$ 5.290,00Sin impuestos nacionales:  $ 4.371,90
+
+Class: ['product']
+Text: Sin StockBudin - Manzana y Canela$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin StockBudín de banana y nuez$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin StockBudín de limón y amapolas$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin StockBudín de naranja$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin StockCaja Bombon X 50$ 40.000,00Sin impuestos nacionales:  $ 33.057,85
+
+Class: ['product']
+Text: Sin StockGalletita sablee con almendra$ 5.150,00Sin impuestos nacionales:  $ 4.256,20
+
+Class: ['product']
+Text: Sin StockGalletitas sablee$ 4.690,00Sin impuestos nacionales:  $ 3.876,03
+
+Class: ['product']
+Text: Sin StockMacaron - Chocolate blanco$ 3.150,00Sin impuestos nacionales:  $ 2.603,31
+
+Class: ['product']
+Text: Sin StockPepas$ 4.990,00Sin impuestos nacionales:  $ 4.123,97
+
+Class: ['product']
+Text: Sin StockCookie Chocolate$ 4.390,00Sin impuestos nacionales:  $ 3.628,10
+
+Class: ['product']
+Text: Sin StockScon$ 3.950,00Sin impuestos nacionales:  $ 3.264,46
+
+Class: ['product']
+Text: Sin StockCookie Nutella$ 4.390,00Sin impuestos nacionales:  $ 3.628,10
+
+Class: ['product']
+Text: Sin StockMacaron - Nutella$ 3.150,00Sin impuestos nacionales:  $ 2.603,31
+
+Class: ['product']
+Text: Sin StockMacaron - Frutos rojos$ 3.150,00Sin impuestos nacionales:  $ 2.603,31
+
+Class: ['product']
+Text: Sin StockTostada unidad$ 2.189,00Sin impuestos nacionales:  $ 1.809,09
+
+Class: ['product']
+Text: Sin StockBOX DESAYUNO1 Alfajor, 1 cuadrado brownie, 1 porcion de torta, 4 macarons, 2 medialunas con jamon y queso, 1 porciones de budin, 1 cookie.$ 31.790,00Sin impuestos nacionales:  $ 26.272,73
+
+Class: ['product']
+Text: Sin StockCookie Red Velvet$ 4.390,00Sin impuestos nacionales:  $ 3.628,10
+
+Class: ['product']
+Text: Sin StockCaja Macarons$ 17.000,00Sin impuestos nacionales:  $ 14.049,59
+
+Class: ['product']
+Text: Sin StockCafe strong x kilo$ 65.500,05Sin impuestos nacionales:  $ 54.132,27
+
+Class: ['product']
+Text: Sin StockDESCUENTO$ 0,00
+
+Class: ['product']
+Text: Sin StockTrufas x 2 unidades$ 1.107,70Sin impuestos nacionales:  $ 915,45
+
+Class: ['product']
+Text: Sin StockBudín entero banana$ 21.221,20Sin impuestos nacionales:  $ 17.538,18
+
+Class: ['product']
+Text: Sin StockVarios$ 1,17Sin impuestos nacionales:  $ 0,97
+
+Class: ['product']
+Text: Sin StockMedialuna para llevar$ 2.090,00Sin impuestos nacionales:  $ 1.727,27
+
+Class: ['product']
+Text: Sin StockMacaron de Pistacho$ 3.150,00Sin impuestos nacionales:  $ 2.603,31
+
+Class: ['product']
+Text: Sin StockLunnet$ 4.390,00Sin impuestos nacionales:  $ 3.628,10
+
+Class: ['product']
+Text: Sin StockCookie - Pistacho$ 4.390,00Sin impuestos nacionales:  $ 3.628,10
+
+Class: ['product']
+Text: Sin Stockpan de molde blanco$ 6.000,00Sin impuestos nacionales:  $ 4.958,68
+
+Class: ['product']
+Text: Sin Stockpan de molde integral$ 7.000,00Sin impuestos nacionales:  $ 5.785,12
+
+Class: ['product']
+Text: Sin Stockalfajor de whisky$ 5.290,00Sin impuestos nacionales:  $ 4.371,90
+
+Class: ['product']
+Text: Sin Stockbudin marmolado$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['product']
+Text: Sin Stockscon salado$ 3.950,00Sin impuestos nacionales:  $ 3.264,46
+
+Class: ['product']
+Text: Sin StockPorción - Lemon Pie$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Ferrerobrownie, dulce de leche, corazón d Nutella, crema Ferrero$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Balcarce$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Bombónbrownie, mousse de choco y crema santilli$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Cheesecake frutos rojos$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Cheesecake New York (cocido)cheese cake cocido con frutos rojos$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Cheesecake oreo con DDL y crema$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Chocotorta$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Crumble de manzana$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Mousse de limón$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Mousse de yogur y maracuyáTorta con base de madalena, mousse de yogurt, maracuyá, con cubierta de maracuyá.$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Red Velvet$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Suiza$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Suiza de coco$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockTarta individual de frambuesa y chocolate blanco$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Tarta KinderChocolate con leche & chocolate blanco$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockTarta individual de maracuyá$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - TiramisúTorta a base de bizcochuelo de vainilla humedecido con almíbar de café y oporto, crema de queso mascarpone terminada con crema chantilly.$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Torta de Café$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Torta de chocolate y dulce de lechePorción de torta de chocolate, dulce de leche, mousse de chocolate, cubierta con ganache de chocolate.$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Carrot Cake$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Torta doble chocolate$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Torta NutellaTorta de bizcochuelo de chocolate, crema de Nutella, crema Chantilly, recubierta con ganache de chocolate$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockTarta individual de frutilla$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - BarilocheBIscocho de chocolate con mousse de chocolate con DDL y frambuezas$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - torta de NuezCrumble de nuez con DDL y crema santilli$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - MarquiseBase de bownie con DDL, mousse de chocolate, crema santilli y frutos rojos$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - torta Bon o Bon$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción - Key lime pie$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockPorción torta franui$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockRed velvet (18cm)$ 38.390,00Sin impuestos nacionales:  $ 31.727,27
+
+Class: ['product']
+Text: Sin StockBalcarce$ 40.900,00Sin impuestos nacionales:  $ 33.801,65
+
+Class: ['product']
+Text: Sin StockBrownie con ddl y merengue$ 43.900,00Sin impuestos nacionales:  $ 36.280,99
+
+Class: ['product']
+Text: Sin StockCheese cake frutos rojos$ 39.490,00Sin impuestos nacionales:  $ 32.636,36
+
+Class: ['product']
+Text: Sin StockCheese cake new york (cocido)$ 39.490,00Sin impuestos nacionales:  $ 32.636,36
+
+Class: ['product']
+Text: Sin StockCheese cake oreo con ddl y crema$ 41.900,00Sin impuestos nacionales:  $ 34.628,10
+
+Class: ['product']
+Text: Sin StockChocotorta (26x16cm)$ 41.900,00Sin impuestos nacionales:  $ 34.628,10
+
+Class: ['product']
+Text: Sin StockCrumble de manzanas$ 36.190,00Sin impuestos nacionales:  $ 29.909,09
+
+Class: ['product']
+Text: Sin StockFerrero (brow, ddl, corazon de nutella, crema ferrero)$ 43.900,00Sin impuestos nacionales:  $ 36.280,99
+
+Class: ['product']
+Text: Sin StockLemon pie$ 30.900,00Sin impuestos nacionales:  $ 25.537,19
+
+Class: ['product']
+Text: Sin StockMousse de limón$ 36.190,00Sin impuestos nacionales:  $ 29.909,09
+
+Class: ['product']
+Text: Sin StockMousse de yogur y maracuyá$ 38.390,00Sin impuestos nacionales:  $ 31.727,27
+
+Class: ['product']
+Text: Sin StockRogel$ 40.900,00Sin impuestos nacionales:  $ 33.801,65
+
+Class: ['product']
+Text: Sin Stockseña 10.000$ 10.000,00Sin impuestos nacionales:  $ 8.264,46
+
+Class: ['product']
+Text: Sin Stockseña 1.000$ 1.000,00Sin impuestos nacionales:  $ 826,45
+
+Class: ['product']
+Text: Sin StockSuiza$ 37.290,00Sin impuestos nacionales:  $ 30.818,18
+
+Class: ['product']
+Text: Sin StockSuiza de coco$ 37.290,00Sin impuestos nacionales:  $ 30.818,18
+
+Class: ['product']
+Text: Sin StockTarta de frambuesa y ch blanco$ 31.900,00Sin impuestos nacionales:  $ 26.363,64
+
+Class: ['product']
+Text: Sin StockTarta kinder (ch c leche, ch blanco)$ 43.900,00Sin impuestos nacionales:  $ 36.280,99
+
+Class: ['product']
+Text: Sin StockTarta maracuyá$ 37.290,00Sin impuestos nacionales:  $ 30.818,18
+
+Class: ['product']
+Text: Sin StockTiramisu$ 37.290,00Sin impuestos nacionales:  $ 30.818,18
+
+Class: ['product']
+Text: Sin StockTorta de café$ 43.900,00Sin impuestos nacionales:  $ 36.280,99
+
+Class: ['product']
+Text: Sin StockTorta de chocolate y dulce de leche$ 43.900,00Sin impuestos nacionales:  $ 36.280,99
+
+Class: ['product']
+Text: Sin StockTorta de zanahoria (18cm)$ 38.390,00Sin impuestos nacionales:  $ 31.727,27
+
+Class: ['product']
+Text: Sin StockTorta doble chocolate$ 43.900,00Sin impuestos nacionales:  $ 36.280,99
+
+Class: ['product']
+Text: Sin StockTorta Nutella$ 43.900,00Sin impuestos nacionales:  $ 36.280,99
+
+Class: ['product']
+Text: Sin StockTorta de nuez$ 38.390,00Sin impuestos nacionales:  $ 31.727,27
+
+Class: ['product']
+Text: Sin StockTorta de marquise$ 43.900,00Sin impuestos nacionales:  $ 36.280,99
+
+Class: ['product']
+Text: Sin StockTorta de tres mousses$ 43.900,00Sin impuestos nacionales:  $ 36.280,99
+
+Class: ['product']
+Text: Sin StockTorta Bariloche$ 43.900,00Sin impuestos nacionales:  $ 36.280,99
+
+Class: ['product']
+Text: Sin StockKey lime pie$ 36.190,00Sin impuestos nacionales:  $ 29.909,09
+
+Class: ['product']
+Text: Sin Stocktarta d frutilla$ 36.190,00Sin impuestos nacionales:  $ 29.909,09
+
+Class: ['items', 'orderingDisabled--no-pointer-events']
+Text: Sin StockWaffle - Dulce de lecheWaffle por unidad.
+- Dulce de leche y salsa de caramelo$ 9.889,00Sin impuestos nacionales:  $ 8.172,73Sin StockWaffle - Frutos rojosWaffle por 2 unidades.
+- Crema chantilly, frutos rojos y frutos secos.$ 9.889,00Sin impuestos nacionales:  $ 8.172,73Sin StockWaffle - ChocolatosoWaffle por 2 unidades.
+- Helado de crema americana, salsa de chocolate y chocolate tipo toblerone.$ 9.889,00Sin impuestos nacionales:  $ 8.172,73Sin StockYogur - Frutos rojosYogur artesanal, sobre colchón de frutos rojos.$ 9.889,00Sin impuestos nacionales:  $ 8.172,73Sin StockYogur - Maracuya/mangoYogur artesanal, sobre colchón de Mango y Maracuyá$ 9.889,00Sin impuestos nacionales:  $ 8.172,73
+
+Class: ['product']
+Text: Sin StockMedialuna c/ Jamón & QuesoMedialuna de Manteca tostada con Jamón y queso.$ 3.390,00Sin impuestos nacionales:  $ 2.801,65
+
+Class: ['product']
+Text: Sin StockMedialuna con crudoy queso$ 3.990,00Sin impuestos nacionales:  $ 3.297,52
+
+Class: ['product']
+Text: Sin StockMiga de Jamón & Queso, tostado3 Triángulos tostados miga de JyQ.$ 7.990,00Sin impuestos nacionales:  $ 6.603,31
+
+Class: ['product']
+Text: Sin StockÁrabe de quesoTostado de pan árabe y queso.$ 7.990,00Sin impuestos nacionales:  $ 6.603,31
+
+Class: ['product']
+Text: Sin StockTostado Árabe de Jamón & QuesoTostado Árabe de jamón y queso.$ 8.490,00Sin impuestos nacionales:  $ 7.016,53
+
+Class: ['product']
+Text: Sin StockTostado Árabe de queso y tomateTostado árabe de queso y tomate.$ 7.990,00Sin impuestos nacionales:  $ 6.603,31
+
+Class: ['product']
+Text: Sin StockTostado Árabe de jamón, queso y tomate.Tostado Árabe de jamón, queso y tomate.$ 8.990,00Sin impuestos nacionales:  $ 7.429,75
+
+Class: ['product']
+Text: Sin StockTostado Árabe de jamón crudo y queso.Árabe de Jamón crudo y queso.
+Opcional: tostado o sin tostar.$ 10.750,00Sin impuestos nacionales:  $ 8.884,30
+
+Class: ['product']
+Text: Sin StockFocaccia especialPan de focaccia con Lomito, mozzarella queso crema con ciboulette$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockFocaccia NapolitanaPan de focaccia con lechuga, jamón, queso, tomate y manteca de hierbas$ 9.990,00Sin impuestos nacionales:  $ 8.256,20
+
+Class: ['product']
+Text: Sin StockSándwich Tostado VeggieTostado en pan blanco,con albahaca, tomate, palta, manteca de hierbas, queso en feta y mozzarella$ 10.500,00Sin impuestos nacionales:  $ 8.677,69
+
+Class: ['product']
+Text: Sin StockTostado de pancetaTostado de panceta, mozzarella, cheddar, mayonesa picante y huevo.$ 10.990,00Sin impuestos nacionales:  $ 9.082,64
+
+Class: ['product']
+Text: Sin StockPanini mediterraneoPan de orégano y parmesano con jamón crudo, tomate, mozzarella, albahaca y aceitunas negras.$ 10.990,00Sin impuestos nacionales:  $ 9.082,64
+
+Class: ['product']
+Text: Sin StockTostadasDos tostadas de masa madre, con mermelada y queso crema.$ 5.390,00Sin impuestos nacionales:  $ 4.454,55
+
+Class: ['product']
+Text: Sin StockTostado chipa de jamón y queso$ 10.290,00Sin impuestos nacionales:  $ 8.504,13
+
+Class: ['items', 'orderingDisabled--no-pointer-events']
+Text: Sin StockAgua mineral c/gas x 500ml$ 3.490,00Sin impuestos nacionales:  $ 2.884,30Sin StockAgua mineral s/gas x 500ml$ 3.490,00Sin impuestos nacionales:  $ 2.884,30Sin StockAgua Saborizada Pomelo x 500ml$ 3.490,00Sin impuestos nacionales:  $ 2.884,30Sin StockAgua Saborizada Manzana x 500ml$ 3.490,00Sin impuestos nacionales:  $ 2.884,30Sin StockPepsi x 500ml$ 3.490,00Sin impuestos nacionales:  $ 2.884,30Sin StockPepsi Black x 500ml$ 3.490,00Sin impuestos nacionales:  $ 2.884,30Sin Stock7Up x 500ml$ 3.490,00Sin impuestos nacionales:  $ 2.884,30Sin Stock7Up Free x 500ml$ 3.490,00Sin impuestos nacionales:  $ 2.884,30Sin StockCerveza Stella Artois$ 5.490,00Sin impuestos nacionales:  $ 4.537,19
+
+Class: ['items', 'orderingDisabled--no-pointer-events']
+Text: Sin StockMedialuna sin gluten$ 4.790,00Sin impuestos nacionales:  $ 3.958,68Sin StockMedialuna JyQ sin TACC$ 4.790,00Sin impuestos nacionales:  $ 3.958,68Sin StockAlfajor de maicena sin TACC$ 6.400,00Sin impuestos nacionales:  $ 5.289,26Sin StockChipa de queso sin gluten$ 3.190,00Sin impuestos nacionales:  $ 2.636,36Sin StockTostado árabe sin gluten$ 9.190,00Sin impuestos nacionales:  $ 7.595,04Sin StockTarta de Cabutia sin gluten$ 9.990,00Sin impuestos nacionales:  $ 8.256,20Sin StockTarta de jamón y queso sin gluten$ 9.990,00Sin impuestos nacionales:  $ 8.256,20Sin StockPorción de torta sin gluten$ 9.990,00Sin impuestos nacionales:  $ 8.256,20Sin StockTarta de verdura sin gluten$ 9.990,00Sin impuestos nacionales:  $ 8.256,20Sin StockBudín sin gluten$ 4.525,46Sin impuestos nacionales:  $ 3.740,05Sin Stockbrownie sin gluten$ 6.490,00Sin impuestos nacionales:  $ 5.363,64
+
+Class: ['items', 'orderingDisabled--no-pointer-events']
+Text: Sin StockEnsalada CésarPechuga de pollo, panceta, lechuga, parmesano, croutons y salsa césar.$ 10.990,00Sin impuestos nacionales:  $ 9.082,64Sin StockEnsalada GranjeraPechuga de pollo, lechugas, aceitunas verdes, queso pategras, croutons y un suave aderezo ranch$ 10.990,00Sin impuestos nacionales:  $ 9.082,64Sin StockEnsalada PampeanaCarne sazonada en tiras, cebolla caramelizada ,aderezo de panceta y hongos.$ 10.990,00Sin impuestos nacionales:  $ 9.082,64Sin StockEnsalada TunnisimaCrema de atún, atún en trozos, cebolla, morrones, tomate, aceitunas negras y queso parmesano.$ 10.990,00Sin impuestos nacionales:  $ 9.082,64Sin StockEnsalada VegetarianaHummus de garbanzos, pepinos, aceitunas negras, lechuga, queso parmesano, cebolla caramelizada, tomate, nueces, mix de semillas y jugo de limón.$ 10.990,00Sin impuestos nacionales:  $ 9.082,64
+
+Class: ['items', 'orderingDisabled--no-pointer-events']
+Text: Sin StockSandwich - CésarPan de orégano y parmesano con pechuga de pollo, panceta, lechuga, parmesano y salsa césar.$ 12.290,00Sin impuestos nacionales:  $ 10.157,02Sin StockSandwich - PhiladelphiaPan Blanco.
+Tiras de carne sazonada, cebolla caramelizada, queso cheddar.$ 12.290,00Sin impuestos nacionales:  $ 10.157,02Sin StockSandwich - TunnisimaPan de oregano y parmesano con crema de atún, cebolla, morrones, tomate, aceitunas negras y queso gouda.$ 12.290,00Sin impuestos nacionales:  $ 10.157,02Sin StockTostado x 1$ 3.180,00Sin impuestos nacionales:  $ 2.628,10Sin StockPapas al horno$ 5.490,00Sin impuestos nacionales:  $ 4.537,19Sin StockSandwich - Wine ChickenPollo al vino, queso crema y cebolla caramelizada.$ 12.290,00Sin impuestos nacionales:  $ 10.157,02
+
+Class: ['items', 'orderingDisabled--no-pointer-events']
+Text: Sin StockTarta - CapreseTarta con guarnición.$ 8.490,00Sin impuestos nacionales:  $ 7.016,53Sin StockTarta - EspinacaTarta con guarnición.$ 8.490,00Sin impuestos nacionales:  $ 7.016,53Sin StockTarta - Jamón & QuesoTarta con guarnición.$ 8.490,00Sin impuestos nacionales:  $ 7.016,53Sin StockTarta - ZapallitoTarta con guarnición.$ 8.490,00Sin impuestos nacionales:  $ 7.016,53Sin StockTarta - ZapalloTarta con guarnición.$ 8.490,00Sin impuestos nacionales:  $ 7.016,53
+
