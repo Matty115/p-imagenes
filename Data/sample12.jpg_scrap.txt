@@ -1,4 +1,73 @@
 URL: https://micontactoweb.com/cervantes-restaurante-bar/
-Class: ['elementor', 'elementor-6010', 'elementor-motion-effects-parent']
-Text: CervantesRestaurante - BarCafetería & BebidasDesayunos y MeriendasSIMPLE:$3800Café con 1 medias lunas o criolloSIMPLE Plus:$4500Café con 2 medias lunas o criollosCOMPLETO:$5000Café con medias lunas o criollos + jugo naturalESPECIAL:$6000Infusión + media lunas o criollo + manteca o queso crema + mermelada o dulce de lecheDE CAMPO:$6900Café + tostadas + manteca y mermelada + jugo naturalCafé expreso (café chico):$2500Americano (café jarro):$3000Café Doble:$3000Cortado o Leche:$3000Te o Infusión:$2000LicuadosLicuado:$6500Bebida sin AlcoholCoca Chica:$3800Coca Grande:$7000Agua:$3500Agua saborizada:$6500Bebida con AlcoholCerveza Imperial  Rubia:$9900Heineken:$11900Lata Imperial:$5000TRAGOSNegroni Carpano by Fratelli$7000GIN TONIC$7000Sputnik V$7000Daiquiri$7000Branca + Cola by Fratelli$7000Ferroviario by FratelliDestornillador Español$7000(Vodka + jugo de Naranja natural)Volver al MenúCreado por micontactoweb.com
+Name: cervantes restaurante - bar cafeteria bebidas desayunos y meriendas simple :
+Price: $3800
+
+Name: cafe con 1 medias lunas o criollo simple plus :
+Price: $4500
+
+Name: cafe con 2 medias lunas o criollos completo:
+Price: $5000
+
+Name: cafe con medias lunas o criollos jugo natural especial:
+Price: $6000
+
+Name: infusion media lunas o criollo manteca o queso crema mermelada o dulce de leche de campo:
+Price: $6900
+
+Name: cafe tostadas manteca y mermelada jugo natural cafe expreso cafe chico:
+Price: $2500
+
+Name: americano cafe jarro:
+Price: $3000
+
+Name: cafe doble:
+Price: $3000
+
+Name: cortado o leche:
+Price: $3000
+
+Name: te o infusion:
+Price: $2000
+
+Name: licuados licuado:
+Price: $6500
+
+Name: bebida sin alcohol coca chica:
+Price: $3800
+
+Name: coca grande:
+Price: $7000
+
+Name: agua :
+Price: $3500
+
+Name: agua saborizada:
+Price: $6500
+
+Name: bebida con alcohol cerveza imperial rubia:
+Price: $9900
+
+Name: heineken:
+Price: $11900
+
+Name: lata imperial:
+Price: $5000
+
+Name: tragos negroni carpano by fratelli
+Price: $7000
+
+Name: gin tonic
+Price: $7000
+
+Name: sputnik v
+Price: $7000
+
+Name: daiquiri
+Price: $7000
+
+Name: branca cola by fratelli
+Price: $7000
+
+Name: ferroviario by fratelli destornillador espanol
+Price: $7000
 

@@ -3,6 +3,8 @@ import re
 import cv2
 import requests
 import time
+import unicodedata
+
 from pyzbar.pyzbar import decode
 from bs4 import BeautifulSoup
 
@@ -59,6 +61,56 @@ def decode_qr_code(folder_path):
 
     return data
 
+
+def normalize_text(text):
+    if not text:
+        return ''
+    
+    t = text.strip()
+
+    t = unicodedata.normalize('NFKD', t)
+    t =''.join([c for c in t if not unicodedata.combining(c)]) # Quita tildes
+
+    t = t.lower()
+    t = t.replace('\u2019', "'").replace('\u201c', '"').replace('\u201d', '"') # comillas tipográficas
+    t = re.sub(r'[\r\n\t]+', ' ', t) # espacios en blanco especiales
+    t = re.sub(r'[–—−]', '-', t) # guiones especiales
+    t = re.sub(r'\s+', ' ', t) # múltiples espacios
+    t = re.sub(r'[^\w\s\$\€\.,:-]', '', t) # caracteres no alfanuméricos (excepto algunos signos)
+    return t
+
+
+def split_multi_item_block(text, matches):
+    if not matches:
+        return []
+
+    items = []
+    last_end = 0
+    
+    for match in matches:
+        # El producto es lo que está antes del precio (desde el fin del anterior)
+        chunk = text[last_end:match.end()].strip()
+        
+        # Limpieza rápida de basura al inicio (guiones, puntos, etc.)
+        chunk = re.sub(r'^[:\s\.-]+', '', chunk)
+        
+        # Separar el precio del nombre para el futuro match
+        price_str = match.group(0)
+        name_str = text[last_end:match.start()].strip()
+        name_str = re.sub(r'^[:\s\.-]+', '', name_str) # Limpiar inicio del nombre
+        
+        if len(name_str) > 2: # Evitar basura
+            items.append({
+                'name': normalize_text(name_str),
+                'price': price_str.strip(),
+                'text': chunk
+            })
+        
+        last_end = match.end()
+    
+    return items
+
+
 def filter_redundant_items(items):
         if not items:
             return items
@@ -66,7 +118,7 @@ def filter_redundant_items(items):
         # Normalizar y filtrar duplicados exactos
         seen = {}
         for item in items:
-            normalized = ' '.join(item['text'].split()).lower()
+            normalized = ' '.join(item['text'].split())
             if normalized not in seen:
                 seen[normalized] = item
         
@@ -75,12 +127,12 @@ def filter_redundant_items(items):
         # Filtrar redundancia: si un texto está contenido en otro, descartar el más corto
         filtered = []
         for i, item1 in enumerate(unique_items):
-            text1 = item1['text'].lower()
+            text1 = item1['text']
             is_redundant = False
             
             for j, item2 in enumerate(unique_items):
                 if i != j:
-                    text2 = item2['text'].lower()
+                    text2 = item2['text']
                     # Si item1 está contenido en item2, item1 es redundante
                     # (los iguales exactos ya fueron filtrados en la primera fase)
                     if text1 in text2:
@@ -100,13 +152,13 @@ def classic_extraction(soup):
     MAX_LENGTH = 1000
     CONTEXT_SPAN = 50
 
-    text = soup.get_text(strip=True)
+    text = normalize_text(soup.get_text(strip=True))
 
     # Regex con non-capturing groups (?:...) para evitar tuplas de grupos
-    price_pattern = r"(?:[$€₲]|(?:CLP|USD|EUR|COP|ARS|UYU|BOL|PYG))?\s*(\d{1,3}([.,]\d{3})*[.,]\d{2,3}|\d{3,})\s*(?:[$€₲]|(?:CLP|USD|EUR|COP|ARS|UYU|BOL|PYG))?"
-    prices = list(re.finditer(price_pattern, text, flags=re.IGNORECASE))
-    price_count = len(prices)
+    price_pattern = r"(?:[$€₲]|(?:CLP|USD|EUR|COP|ARS|UYU|BOL|PYG))?\s?(\d{1,3}([.,]\d{3}\s?)*[.,]\d{2,3}|(\d\s?){3,})\s*(?:[$€₲]|(?:CLP|USD|EUR|COP|ARS|UYU|BOL|PYG))?"
 
+    matches = list(re.finditer(price_pattern, text, flags=re.IGNORECASE))
+    price_count = len(matches)
     keywords = ['sol', 'heineken', 'stella artois'] # necesidad de listado oficial
     keyword_hits = sum(1 for kw in keywords if kw.lower() in text.lower())
 
@@ -117,30 +169,29 @@ def classic_extraction(soup):
         'items': []
     }
 
-    def item_info(element):
-        item_class = element.get('class')
-        matches = [m.group(0) for m in re.finditer(price_pattern, text_block, flags=re.IGNORECASE)]
-        return item_class, matches
-
+    processed_texts = set()
     items = []
 
     # Búsqueda en listas, tablas y divs
-    for el in soup.find_all(['li', 'tr', 'div']):
-        text_block = el.get_text(strip=True)
-        if len(text_block) < MIN_LENGTH or len(text_block) > MAX_LENGTH:
+    for el in soup.find_all(['div', 'li', 'tr', 'p', 'td']):
+        # Verificamos si el elemento tiene el patrón de precio dentro de su texto propio
+        clean_block = normalize_text(el.get_text(strip=True, separator=' '))
+        
+        if not clean_block or len(clean_block) < 10:
             continue
-        item_class, item_matches = item_info(el)
-        if item_matches != []:
-            items.append({'class': item_class, 'text': text_block, 'matches': item_matches})
 
-    # Fallback: contexto de precios si no se encontraron items
-    if not items:
-        for match in prices:
-            ctx_start = max(0, match.start() - CONTEXT_SPAN)
-            ctx_end = match.end() + CONTEXT_SPAN
-            context = text[ctx_start:ctx_end].strip()
-            items.append({'class': f'Contexto entre {ctx_start}-{ctx_end}', 'text': context, 'matches': [match.group(0)]})
-    
+        # Evitar procesar el mismo texto si ya lo capturamos en un hijo o padre
+        if clean_block in processed_texts:
+            continue
+
+        block_matches = list(re.finditer(price_pattern, clean_block, flags=re.IGNORECASE))
+        
+        if block_matches:
+            sub_items = split_multi_item_block(clean_block, block_matches)
+            if sub_items:
+                items.extend(sub_items)
+                processed_texts.add(clean_block)
+
     items = filter_redundant_items(items)
 
     return {
@@ -148,64 +199,94 @@ def classic_extraction(soup):
         'items': items
     }
 
-
-def interactive_extraction(driver, max_time=60, history=[]):
+def interactive_extraction(driver, max_time=60, history=[], trace=0):
+    BANNED_DOMAINS = [d.strip() for d in os.getenv("BANNED_DOMAINS", "").split(",") if d.strip()]
     url = driver.current_url
     out = {'recognized': False, 'items': []}
-    if url in history:
+
+    if url in history or trace > 5 or url in BANNED_DOMAINS:
         return out
+    
+    history.append(url)
+    actual = classic_extraction(BeautifulSoup(driver.page_source, 'html.parser'))
     start = time.time()
-    last_height = 0
+
+    step_size = 500
+    current_position = 0
+    total_height = driver.execute_script("return document.body.scrollHeight")
     while time.time() - start < max_time:
-        # Scroll hacia abajo
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        current_position += step_size
+        if current_position >= total_height:
+            break
+        # Scroll gradual hacia abajo
+        driver.execute_script(f"window.scrollTo(0, {current_position});")
         time.sleep(1)
         new_height = driver.execute_script("return document.body.scrollHeight")
-        if new_height == last_height:
-            break
-        last_height = new_height
+        if new_height > total_height:
+            total_height = new_height
+
         # Expandir acordeones/tabs
         for tag in ['button', 'a', 'span', 'li', 'td', 'div']:
             try:
                 elements = driver.find_elements(By.TAG_NAME, tag)
                 for el in elements:
-                    try:
+                    try:    
+                            tag = el.tag_name.lower()
+                            href = el.get_attribute('href')
+                            onclick = el.get_attribute('onclick')
+                            role = el.get_attribute('role')
+                            class_attr = el.get_attribute('class') or ''
+                            reference = href or onclick
+
+                            is_interactive = (
+                                (tag == 'a' and href) or
+                                (tag == 'button') or
+                                onclick or
+                                (role and 'button' in role.lower()) or
+                                ('button' in class_attr.lower() or 'accordion' in class_attr.lower())
+                            )
+
+                            if not is_interactive:
+                                continue  # No hacer click
+
                             text = el.text.lower()
-                            if any(keyword in text for keyword in ['whatsapp', 'facebook', 'instagram', 'twitter', 'tiktok', 'youtube', 'wix', 'acceder', 'iniciar sesión', 'registrarse', 'suscribirse', 'comprar', 'pagar', 'donar']):
+
+                            if any(keyword in text for keyword in ['whatsapp', 'facebook', 'instagram', 'twitter', 'tiktok', 'youtube', 'wix', 'acceder', 'iniciar sesión', 'registrarse', 'suscribirse', 'comprar', 'pagar', 'donar', 'descargar', 'contacto', 'contactanos', 'contacta', 'llamanos', 'llámanos', 'mensajería', 'messenger', 'linkedin', 'snapchat', 'google drive', 'play store']):
                                 continue
-                            reference = el.get_attribute('href')  # Para enlaces
-                            if reference is None:
-                                reference = el.get_attribute('onClick')  # Para otros elementos
-                            if reference and any(domain in reference for domain in ['whatsapp.com', 'facebook.com', 'instagram.com', 'twitter.com', 'tiktok.com', 'youtube.com', 'wix.com', 'x.com', 'wa.me', 'wa.link', 'linkedin.com', 'messenger.com', 'snapchat.com', ]):
+                            cond = any([domain in reference for domain in BANNED_DOMAINS])
+                            if reference is not None and (cond or reference in history):
                                 continue
-
-                            el.click() # Clickea en cualquier cosa, ojo
-                            time.sleep(1)
-                            soup = BeautifulSoup(driver.page_source, 'html.parser')
-                            classic_redirected = classic_extraction(soup)
-
-                            if classic_redirected['recognized']:
-                                out['recognized'] = True
-                                out['items'].extend(classic_redirected['items']) # Revisar si conviene deduplicar
-
-                            redirected = interactive_extraction(driver, max_time - (time.time() - start), history + [url])
-                            out['recognized'] = out['recognized'] or redirected['recognized']
-                            out['items'].extend(redirected['items'])
-                            out['items'] = filter_redundant_items(out['items'])
-                            driver.back()
+                            
+                            old_html = driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML")
+                            el.click()
+                            WebDriverWait(driver, 10).until(
+                                lambda d: d.find_element(By.TAG_NAME, "body").get_attribute("innerHTML") != old_html
+                            )
+                            new_html = driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML")
+                            new_url = driver.current_url
+                            if new_html != old_html :
+                                soup = BeautifulSoup(new_html, 'html.parser')
+                                new = html_handler(soup, driver, max_time - (time.time() - start), history, trace + 1)
+                                actual['recognized'] = actual['recognized'] or new['recognized']
+                                actual['items'].extend(new['items'])
+                                actual['items'] = filter_redundant_items(actual['items'])
+                            if reference:
+                                history.append(reference)
+                            if new_url != url:
+                                history.append(new_url)
+                                driver.back()
                                 
                     except (ElementClickInterceptedException, ElementNotInteractableException):
                         continue
             except Exception:
                 continue
-    return out
+    return actual
 
-
-def html_handler(soup, driver):
+def html_handler(soup, driver, max_time=60, history=[], trace=0):
     # Ejemplo simple: extraer todos los enlaces en el HTML
     scrap = classic_extraction(soup)
-    if not scrap['recognized']:
-        scrap = interactive_extraction(driver)
+    if not scrap['recognized'] or history != []:
+        scrap = interactive_extraction(driver, max_time, history, trace)
     return scrap
 
 def url_scraping(url):
@@ -270,13 +351,13 @@ if __name__ == "__main__":
             url = data[0].data.decode("utf-8") # Obtención del URL asociado al QR
             scrap = url_scraping(url) # Scraping del URL, información estructurada en texto plano
 
-            print(f"{name}: {url} -> scrap: status {scrap['status']}, elementos: {[len(item['text']) for item in scrap['data']['items']]}")
+            print(f"{name}: {url} -> scrap: status {scrap['status']}, cantidad de elementos: {len(scrap['data']['items'])}")
 
             if scrap['data']['items'] != []: # Almacenamiento del texto plano
                 output_file = Path(save_data_path) / f"{name}_scrap.txt"
                 with open(output_file, "w", encoding="utf-8") as f:
                     f.write(f"URL: {url}\n")
                     for item in scrap['data']['items']:
-                        f.write(f"Class: {item['class']}\n")
-                        f.write(f"Text: {item['text']}\n")
+                        f.write(f"Name: {item['name']}\n")
+                        f.write(f"Price: {item['price']}\n")
                         f.write("\n")
