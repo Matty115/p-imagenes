@@ -1,0 +1,317 @@
+URL: http://elcarrodemario.menuqr.fun
+Name: lomitos hamburguesas milanesas de lomo rabas y papas bebidas sin alcohol cervezas vinos champagnes whiskys postres cafeteria horarios: martes a domingos 12:00hs. a 15:30hs. lunes a domingo de 19:30hs. a 02:00hs. seguinos en elcarrodemariocba lomo tradicional: mayonesa casera, lechuga, tomate, lomo, queso, huevo
+Price: $19000
+Text: lomitos hamburguesas milanesas de lomo rabas y papas bebidas sin alcohol cervezas vinos champagnes whiskys postres cafeteria horarios: martes a domingos 12:00hs. a 15:30hs. lunes a domingo de 19:30hs. a 02:00hs. seguinos en elcarrodemariocba lomo tradicional: mayonesa casera, lechuga, tomate, lomo, queso, huevo $19000
+
+Name: lomo super: mayonesa casera, lechuga, tomate, cebolla cocida a la plancha, ajies, picles, lomo, queso y huevo.
+Price: $20000
+Text: lomo super: mayonesa casera, lechuga, tomate, cebolla cocida a la plancha, ajies, picles, lomo, queso y huevo. $20000
+
+Name: lomo al plato: bifecitos de lomo a la plancha con queso, huevo, ensalada de tomate, lechuga, porcion de papas fritas, cazuela de mayonesa casera, cazuela con picles, pan.
+Price: $28000
+Text: lomo al plato: bifecitos de lomo a la plancha con queso, huevo, ensalada de tomate, lechuga, porcion de papas fritas, cazuela de mayonesa casera, cazuela con picles, pan. $28000
+
+Name: lomo vegetariano super: mayonesa casera, doble queso, huevo, lechuga, tomate, cebolla cocida a la pncha, aji, picles.
+Price: $9000
+Text: lomo vegetariano super: mayonesa casera, doble queso, huevo, lechuga, tomate, cebolla cocida a la pncha, aji, picles. $9000
+
+Name: lomo vegetariano simple: mayonesa casera, doble queso, huevo, lechuga, tomate.
+Price: $8000
+Text: lomo vegetariano simple: mayonesa casera, doble queso, huevo, lechuga, tomate. $8000
+
+Name: hamburguesa tradicional: mayonesa casera, lechuga, tomate, hamburguesa de lomo casera, queso, hue
+Price: $9000
+Text: hamburguesa tradicional: mayonesa casera, lechuga, tomate, hamburguesa de lomo casera, queso, hue $9000
+
+Name: hamburguesa super: mayonesa casera, lechuga, tomate, cebolla cocida a la plancha, ajies, picles, hamburguesa de lomo casera, queso y huevo.
+Price: $10000
+Text: hamburguesa super: mayonesa casera, lechuga, tomate, cebolla cocida a la plancha, ajies, picles, hamburguesa de lomo casera, queso y huevo. $10000
+
+Name: hamburguesa al plato: dos hamburguesas de lomo, queso, huevo, ensalada de lechuga, tomate, cazuela con mayonesa casera, cazuela con picles, porcion de papasfritas, pan.
+Price: $18000
+Text: hamburguesa al plato: dos hamburguesas de lomo, queso, huevo, ensalada de lechuga, tomate, cazuela con mayonesa casera, cazuela con picles, porcion de papasfritas, pan. $18000
+
+Name: milanesa tradicional de lomo:
+Price: $20500
+Text: milanesa tradicional de lomo: $20500
+
+Name: milanesa napolitana: milanesa de lomo, rodajas de tomate, queso gratinado y oregano.
+Price: $22500
+Text: milanesa napolitana: milanesa de lomo, rodajas de tomate, queso gratinado y oregano. $22500
+
+Name: milanesa suiza: milanesa de lomo, queso fundido y oregano.
+Price: $22500
+Text: milanesa suiza: milanesa de lomo, queso fundido y oregano. $22500
+
+Name: milanesa a caballo: milanesa de lomo, con dos huevos a la plancha.
+Price: $22500
+Text: milanesa a caballo: milanesa de lomo, con dos huevos a la plancha. $22500
+
+Name: milanesa fugazeta: milanesa de lomo, con cebolla a la plancha, queso fundido y oregano.
+Price: $22500
+Text: milanesa fugazeta: milanesa de lomo, con cebolla a la plancha, queso fundido y oregano. $22500
+
+Name: milanesa ninos cpapas :
+Price: $10000
+Text: milanesa ninos cpapas : $10000
+
+Name: raba
+Price: $24500 12
+Text: raba $24500 12
+
+Name: papas fritas
+Price: $9000 12
+Text: papas fritas $9000 12
+
+Name: papas fritas con huevo
+Price: $11000 12
+Text: papas fritas con huevo $11000 12
+
+Name: ensalada: lechuga tomate cebolla.
+Price: $5000
+Text: ensalada: lechuga tomate cebolla. $5000
+
+Name: coca cola
+Price: 350
+Text: coca cola 350
+
+Name: ml.
+Price: $3000
+Text: ml. $3000
+
+Name: fanta naranja
+Price: 350
+Text: fanta naranja 350
+
+Name: sprite
+Price: 350
+Text: sprite 350
+
+Name: coca cola zero
+Price: 350
+Text: coca cola zero 350
+
+Name: coca cola light
+Price: 350
+Text: coca cola light 350
+
+Name: agua saborizada aquarius
+Price: 500
+Text: agua saborizada aquarius 500
+
+Name: ml. manzana
+Price: $3000
+Text: ml. manzana $3000
+
+Name: ml. pomelo
+Price: $3000
+Text: ml. pomelo $3000
+
+Name: ml. pera
+Price: $3000
+Text: ml. pera $3000
+
+Name: agua sin gas
+Price: 500
+Text: agua sin gas 500
+
+Name: agua con gas
+Price: 500
+Text: agua con gas 500
+
+Name: heineken rubia litro
+Price: $8500
+Text: heineken rubia litro $8500
+
+Name: miller rubia litro.
+Price: $7300
+Text: miller rubia litro. $7300
+
+Name: imperial rubia litro.
+Price: $6000
+Text: imperial rubia litro. $6000
+
+Name: imperial stout litro
+Price: $6500
+Text: imperial stout litro $6500
+
+Name: grolsch
+Price: $8500
+Text: grolsch $8500
+
+Name: heineken lata
+Price: 473
+Text: heineken lata 473
+
+Name: ml.
+Price: $5000
+Text: ml. $5000
+
+Name: imperial rubia lata
+Price: 473
+Text: imperial rubia lata 473
+
+Name: imperial negra lata
+Price: 473
+Text: imperial negra lata 473
+
+Name: grolsh roja lata
+Price: 473
+Text: grolsh roja lata 473
+
+Name: grolsh ipa lata
+Price: 473
+Text: grolsh ipa lata 473
+
+Name: miller lata
+Price: 473
+Text: miller lata 473
+
+Name: tintos santa julia malbec 38
+Price: $6200
+Text: tintos santa julia malbec 38 $6200
+
+Name: solsticio malbec cabernet - franc
+Price: $14000
+Text: solsticio malbec  cabernet - franc $14000
+
+Name: d.v. catena blend
+Price: $25000
+Text: d.v. catena blend $25000
+
+Name: las perdices reserva malbec
+Price: $20000
+Text: las perdices reserva malbec $20000
+
+Name: piatelli malbec
+Price: $20000
+Text: piatelli malbec $20000
+
+Name: portillo malbec
+Price: $9000
+Text: portillo malbec $9000
+
+Name: santa julia malbec
+Price: $9000
+Text: santa julia malbec $9000
+
+Name: fond de cave malbec
+Price: $15500
+Text: fond de cave malbec $15500
+
+Name: nicassia red blend
+Price: $16800
+Text: nicassia red blend $16800
+
+Name: blancos santa julia chardonnay santa julia chardonnay 38
+Price: $9000 $
+Text: blancos santa julia chardonnay santa julia chardonnay 38 $9000 $
+
+Name: las perdices sauvignon blanc
+Price: $14000
+Text: las perdices sauvignon blanc $14000
+
+Name: don david torrontes
+Price: $16000
+Text: don david torrontes $16000
+
+Name: sidra
+Price: 1888 $
+Text: sidra 1888 $
+
+Name: alta vista extra brut
+Price: $10000
+Text: alta vista extra brut $10000
+
+Name: alta vista brut nature
+Price: $11500
+Text: alta vista brut nature $11500
+
+Name: nieto senetiner brut nature $00 baron b extra brut
+Price: $50000
+Text: nieto senetiner brut nature $00 baron b extra brut $50000
+
+Name: chandon extra brut $00 old smugglr
+Price: $1000
+Text: chandon extra brut $00 old smugglr $1000
+
+Name: cridores
+Price: $1000
+Text: cridores $1000
+
+Name: johnnie walker red label
+Price: $6000
+Text: johnnie walker red label $6000
+
+Name: johnnie walker black label
+Price: $10000
+Text: johnnie walker black label $10000
+
+Name: jack daniel
+Price: $10000
+Text: jack daniel $10000
+
+Name: chivas regal 12 anos
+Price: $8000
+Text: chivas regal 12 anos $8000
+
+Name: gancia csprite
+Price: $5000
+Text: gancia csprite $5000
+
+Name: gin tonic bombay
+Price: $10000
+Text: gin tonic bombay $10000
+
+Name: fernet con coca cola.
+Price: $6000
+Text: fernet con coca cola. $6000
+
+Name: postre de la casa flan casero con dulce de leche.
+Price: $ 5000
+Text: postre de la casa flan casero con dulce de leche. $ 5000
+
+Name: ,00 postres helados bombon suizo: crema helada de dulce de leche y crema americana, cubierto con bano de reposteria.
+Price: $00,00
+Text: ,00 postres helados bombon suizo: crema helada de dulce de leche y crema americana, cubierto con bano de reposteria. $00,00
+
+Name: bombon delicia: crema de vainilla artrsanal, con corazon de dulce de leche repostero, cubierto con bano de reposteria .
+Price: $4500
+Text: bombon delicia: crema de vainilla artrsanal, con corazon de dulce de leche repostero, cubierto con bano de reposteria . $4500
+
+Name: ,00 porcion crocante: crema helada de mandorla, almendra italiana ,cubierto con crocante de mani y almendra dulce
+Price: $4500
+Text: ,00 porcion crocante: crema helada de mandorla, almendra italiana ,cubierto con crocante de mani y almendra dulce $4500
+
+Name: ,00 cafe chico
+Price: $2000
+Text: ,00 cafe chico $2000
+
+Name: ,00 cafe jarrito
+Price: $2500
+Text: ,00 cafe jarrito $2500
+
+Name: ,00 cortado chico
+Price: $2300
+Text: ,00 cortado chico $2300
+
+Name: ,00 cortado jarrito
+Price: $2800
+Text: ,00 cortado jarrito $2800
+
+Name: ,00 cafe con leche
+Price: $3500
+Text: ,00 cafe con leche $3500
+
+Name: 12 rabas
+Price: $13000
+Text: 12 rabas $13000
+
+Name: 12 papas fritas
+Price: $5000
+Text: 12 papas fritas $5000
+
+Name: 12 papas fritas con huevo
+Price: $6500
+Text: 12 papas fritas con huevo $6500
+

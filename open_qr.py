@@ -23,134 +23,190 @@ except Exception:
     pass
 
 def decode_qr_code(folder_path):
+    '''
+    Decodifica códigos QR en imágenes dentro de una carpeta, aplicando técnicas de preprocesamiento si la detección inicial falla.
+
+    Parámetros:
+    - folder_path (str): Ruta a la carpeta que contiene las imágenes.
+    
+    Retorna:
+    - data (list): Lista de tuplas (nombre_imagen, datos_decodificados).
+        - nombre_imagen (str): Nombre del archivo de imagen.
+        - datos_decodificados (list): Lista de objetos decodificados por pyzbar, o lista vacía si no se detecta ningún código QR.
+    '''
+
     data = []
+
+    # Obtención y procesamiento de cada imagen en la carpeta
     for image in Path(folder_path).glob("*"):
         name = image.name
-        matrix = cv2.imread(str(image)) # Imagen en BGR, NO RGB!
-        decodedImage = None if matrix is None else decode(matrix)
+        matrix = cv2.imread(str(image)) # Obtención de imagen en BGR, NO RGB
+        decodedImage = None if matrix is None else decode(matrix) # Intento inicial de decodificación
         
-        # Si no se detectó, aplicar preprocesamiento
+        # Si no se detectó, se aplican técnicas de preprocesamiento
         if matrix is not None and decodedImage == []:
-            # Técnica 1: Conversión a escala de grises
+
+            # Conversión a escala de grises
             gray = cv2.cvtColor(matrix, cv2.COLOR_BGR2GRAY)
             decodedImage = decode(gray)
             
-            # Técnica 2: Umbralización adaptativa
+            # Umbralización adaptativa
             if decodedImage == []:
                 thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, 
                                                cv2.THRESH_BINARY, 11, 2)
                 decodedImage = decode(thresh)
             
-            # Técnica 3: Aumentar contraste
+            # Aumento de contraste
             if decodedImage == []:
                 clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
                 enhanced = clahe.apply(gray)
                 decodedImage = decode(enhanced)
             
-            # Técnica 4: Umbralización simple (Otsu)
+            # Umbralización simple (Otsu)
             if decodedImage == []:
                 _, otsu = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
                 decodedImage = decode(otsu)
             
-            # Técnica 5: Aumentar tamaño de la imagen
+            # Aumento de tamaño de la imagen
             if decodedImage == []:
                 resized = cv2.resize(matrix, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
                 decodedImage = decode(resized)
         
-        data.append((name, decodedImage))
+        data.append((name, decodedImage)) # Almacenamiento de nombre y datos decodificados
 
     return data
 
 
 def normalize_text(text):
+    '''
+    Normaliza el texto para facilitar la comparación y extracción.
+
+    Parámetros:
+    - text (str): Texto a normalizar.
+
+    Retorna:
+    - t (str): Texto normalizado.
+    '''
+
     if not text:
         return ''
     
-    t = text.strip()
+    t = text.strip() # Elimina espacios al inicio y final
 
     t = unicodedata.normalize('NFKD', t)
     t =''.join([c for c in t if not unicodedata.combining(c)]) # Quita tildes
 
     t = t.lower()
-    t = t.replace('\u2019', "'").replace('\u201c', '"').replace('\u201d', '"') # comillas tipográficas
-    t = re.sub(r'[\r\n\t]+', ' ', t) # espacios en blanco especiales
-    t = re.sub(r'[–—−]', '-', t) # guiones especiales
-    t = re.sub(r'\s+', ' ', t) # múltiples espacios
-    t = re.sub(r'[^\w\s\$\€\.,:-]', '', t) # caracteres no alfanuméricos (excepto algunos signos)
+    t = t.replace('\u2019', "'").replace('\u201c', '"').replace('\u201d', '"') # Comillas especiales
+    t = re.sub(r'[\r\n\t]+', ' ', t) # Espacios en blanco especiales
+    t = re.sub(r'[–—−]', '-', t) # Guiones especiales
+    t = re.sub(r'\s+', ' ', t) # Múltiples espacios
+    t = re.sub(r'[^\w\s\$\€\.,:-]', '', t) # Caracteres no alfanuméricos (excepto algunos signos)
     return t
 
 
 def split_multi_item_block(text, matches):
+    '''
+    Divide un bloque de texto que contiene múltiples productos y precios en elementos individuales.
+
+    Parámetros:
+    - text (str): Bloque de texto a dividir.
+    - matches (list): Lista de objetos match de regex que indican las posiciones de los precios en el texto.
+
+    Retorna:
+    - items (list): Lista de diccionarios con 'name', 'price' y 'text' extraídos para cada producto.
+        - name (str): Nombre del producto.
+        - price (str): Precio del producto.
+        - text (str): Texto completo del segmento del producto.
+    '''
+
     if not matches:
         return []
 
     items = []
-    last_end = 0
+    last_end = 0 # Variable para rastrear el final del último match
     
     for match in matches:
-        # El producto es lo que está antes del precio (desde el fin del anterior)
-        chunk = text[last_end:match.end()].strip()
+        chunk = text[last_end:match.end()].strip() # El producto es lo que está antes del precio (desde el fin del anterior)
+        chunk = re.sub(r'^[:\s\.-]+', '', chunk) # Limpieza del inicio del chunk
         
-        # Limpieza rápida de basura al inicio (guiones, puntos, etc.)
-        chunk = re.sub(r'^[:\s\.-]+', '', chunk)
-        
-        # Separar el precio del nombre para el futuro match
-        price_str = match.group(0)
+        price_str = match.group(0) # Precio
+
+        # Extracción y limpieza del nombre
         name_str = text[last_end:match.start()].strip()
-        name_str = re.sub(r'^[:\s\.-]+', '', name_str) # Limpiar inicio del nombre
+        name_str = re.sub(r'^[:\s\.-]+', '', name_str)
         
-        if len(name_str) > 2: # Evitar basura
+        if len(name_str) > 2: # Evitamos anomalías
             items.append({
                 'name': normalize_text(name_str),
                 'price': price_str.strip(),
                 'text': chunk
             })
         
-        last_end = match.end()
-    
+        last_end = match.end() # Actualización del corte
+
     return items
 
 
 def filter_redundant_items(items):
-        if not items:
-            return items
-        
-        # Normalizar y filtrar duplicados exactos
-        seen = {}
-        for item in items:
-            normalized = ' '.join(item['text'].split())
-            if normalized not in seen:
-                seen[normalized] = item
-        
-        unique_items = list(seen.values())
-        
-        # Filtrar redundancia: si un texto está contenido en otro, descartar el más corto
-        filtered = []
-        for i, item1 in enumerate(unique_items):
-            text1 = item1['text']
-            is_redundant = False
-            
-            for j, item2 in enumerate(unique_items):
-                if i != j:
-                    text2 = item2['text']
-                    # Si item1 está contenido en item2, item1 es redundante
-                    # (los iguales exactos ya fueron filtrados en la primera fase)
-                    if text1 in text2:
-                        is_redundant = True
-                        break
-            
-            if not is_redundant:
-                filtered.append(item1)
-        
-        return filtered
+    '''
+    Filtra elementos redundantes de una lista de productos.
 
-def classic_extraction(soup):
+    Parámetros:
+    - items (list): Lista de diccionarios con 'name', 'price' y 'text' para cada producto.
+
+    Retorna:
+    - filtered (list): Lista de diccionarios con 'name', 'price' y 'text' sin elementos redundantes.
+    '''
+
+    if not items:
+        return items
+    
+    # Eliminación de items con textos duplicados
+    seen = {}
+    for item in items:
+        text = item['text']
+        if text not in seen:
+            seen[text] = item
+    unique_items = list(seen.values())
+
+    # Eliminación de items con subcadenas
+    filtered = []
+    for i, item1 in enumerate(unique_items):
+        text1 = item1['text']
+        is_redundant = False
+        
+        for j, item2 in enumerate(unique_items):
+            if i != j:
+                text2 = item2['text']
+                if text1 in text2:
+                    is_redundant = True
+                    break
+        
+        if not is_redundant:
+            filtered.append(item1)
+    
+    return filtered
+
+
+def classic_extraction(soup): # En proceso de mejora
+    '''
+    Extracción directa de precios y nombres de productos desde HTML.
+
+    Parámetros:
+    - soup: BeautifulSoup object del HTML a procesar.
+    Retorna:
+    - diccionario con 'recognized' (bool) y 'items' (lista de diccionarios con 'name', 'price' y 'text').
+        - name (str): Nombre del producto.
+        - price (str): Precio del producto.
+        - text (str): Texto completo del segmento del producto.
+    '''
+
     # Parámetros de umbralización
     PRICES_THRESHOLD = 10
     KEYWORD_THRESHOLD = 1 
     MIN_LENGTH = 10
     MAX_LENGTH = 1000
-    CONTEXT_SPAN = 50
 
     text = normalize_text(soup.get_text(strip=True))
 
@@ -188,6 +244,7 @@ def classic_extraction(soup):
         
         if block_matches:
             sub_items = split_multi_item_block(clean_block, block_matches)
+
             if sub_items:
                 items.extend(sub_items)
                 processed_texts.add(clean_block)
@@ -199,12 +256,29 @@ def classic_extraction(soup):
         'items': items
     }
 
-def interactive_extraction(driver, max_time=60, history=[], trace=0):
+
+def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proceso de mejora
+    '''
+    Extracción interactiva de precios y nombres de productos desde una página web utilizando Selenium a partir de la interacción con elementos, como hacer clic en botones o enlaces para expandir contenido dinámico. De esta manera, para cada nuevo contenido cargado, se aplica extracción clásica recursivamente.
+
+    Parámetros:
+    - driver (WebDriver): Instancia de Selenium WebDriver.
+    - max_time (int): Tiempo máximo en segundos para la extracción interactiva.
+    - history (list): Lista de URLs ya visitadas para evitar ciclos.
+    - depth (int): Nivel de profundidad de la recursión.
+
+    Retorna:
+    - diccionario con 'recognized' (bool) y 'items' (lista de diccionarios con 'name', 'price' y 'text').
+        - name (str): Nombre del producto.
+        - price (str): Precio del producto.
+        - text (str): Texto completo del segmento del producto.
+    '''
+
     BANNED_DOMAINS = [d.strip() for d in os.getenv("BANNED_DOMAINS", "").split(",") if d.strip()]
     url = driver.current_url
     out = {'recognized': False, 'items': []}
 
-    if url in history or trace > 5 or url in BANNED_DOMAINS:
+    if url in history or depth > 5 or url in BANNED_DOMAINS:
         return out
     
     history.append(url)
@@ -266,7 +340,7 @@ def interactive_extraction(driver, max_time=60, history=[], trace=0):
                             new_url = driver.current_url
                             if new_html != old_html :
                                 soup = BeautifulSoup(new_html, 'html.parser')
-                                new = html_handler(soup, driver, max_time - (time.time() - start), history, trace + 1)
+                                new = html_handler(soup, driver, max_time - (time.time() - start), history, depth + 1)
                                 actual['recognized'] = actual['recognized'] or new['recognized']
                                 actual['items'].extend(new['items'])
                                 actual['items'] = filter_redundant_items(actual['items'])
@@ -282,14 +356,46 @@ def interactive_extraction(driver, max_time=60, history=[], trace=0):
                 continue
     return actual
 
-def html_handler(soup, driver, max_time=60, history=[], trace=0):
+
+def html_handler(soup, driver, max_time=60, history=[], depth=0): # Incompleta
+    '''
+    Maneja el procesamiento de HTML para extraer información útil, combinando extracción clásica y extracción interactiva si es necesario.
+
+    Parámetros:
+    - soup: BeautifulSoup object del HTML a procesar.
+    - driver (WebDriver): Instancia de Selenium WebDriver.
+    - max_time (int): Tiempo máximo en segundos para la extracción interactiva.
+    - history (list): Lista de URLs ya visitadas para evitar ciclos.
+    - depth (int): Profundidad actual de la extracción interactiva.
+
+    Retorna:
+    - diccionario con 'recognized' (bool) y 'items' (lista de diccionarios con 'name', 'price' y 'text').
+        - name (str): Nombre del producto.
+        - price (str): Precio del producto.
+        - text (str): Texto completo del segmento del producto.
+    '''
+
     # Ejemplo simple: extraer todos los enlaces en el HTML
     scrap = classic_extraction(soup)
     if not scrap['recognized'] or history != []:
-        scrap = interactive_extraction(driver, max_time, history, trace)
+        scrap = interactive_extraction(driver, max_time, history, depth)
     return scrap
 
-def url_scraping(url):
+
+def url_scraping(url): # Incompleta
+    '''
+    Realiza scraping de un URL para extraer información útil según su tipo de contenido.
+
+    Parámetros:
+    - url (str): URL a procesar.
+
+    Retorna:
+    - diccionario con 'status' (int), 'content_type' (str) y 'data' (diccionario con 'recognized' (bool) y 'items' (lista de diccionarios con 'name', 'price' y 'text')).
+        - name (str): Nombre del producto.
+        - price (str): Precio del producto.
+        - text (str): Texto completo del segmento del producto.
+    '''
+
     # Headers para simular un navegador real y evitar errores 406
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -328,23 +434,26 @@ def url_scraping(url):
         print("Error al acceder al enlace:", e)
         return "error"
 
+
 if __name__ == "__main__":
 
     load_dotenv() # Carga de variables de entorno desde .env
-    # Rutas de entrada y salida
-    # En la práctica, debería requerir extracción del backend y comunicación vía API para la salida
+
+    # Rutas de entrada y salida !
+    # En la práctica, debería requerir extracción del backend de los códigos QR y comunicación vía API para la salida estructurada
     image_path = os.getenv("IMAGE_PATH")
     save_data_path = Path(os.getenv("SAVE_DATA_PATH"))
     save_data_path.mkdir(parents=True, exist_ok=True)
 
-    for file in save_data_path.glob("*"): # Limpieza previa
+    # Limpieza previa
+    for file in save_data_path.glob("*"):
         if file.is_file():
             file.unlink()
 
-    qr_data = decode_qr_code(image_path) # Procesamiento del batch
+    qr_data = decode_qr_code(image_path) # Procesamiento de los códigos QR (no controla cantidad de batches, obtiene todos !)
     for name, data in qr_data:
         if data == []:
-            #print(f"{name}: NO LINK")
+            print(f"{name}: No se detecta código QR o URL válido.")
             continue
 
         else:
@@ -353,11 +462,12 @@ if __name__ == "__main__":
 
             print(f"{name}: {url} -> scrap: status {scrap['status']}, cantidad de elementos: {len(scrap['data']['items'])}")
 
-            if scrap['data']['items'] != []: # Almacenamiento del texto plano
+            if scrap['data']['items'] != []: # Almacenamiento del texto plano en archivo !
                 output_file = Path(save_data_path) / f"{name}_scrap.txt"
                 with open(output_file, "w", encoding="utf-8") as f:
                     f.write(f"URL: {url}\n")
                     for item in scrap['data']['items']:
                         f.write(f"Name: {item['name']}\n")
                         f.write(f"Price: {item['price']}\n")
+                        f.write(f"Text: {item['text']}\n")
                         f.write("\n")
