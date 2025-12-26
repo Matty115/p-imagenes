@@ -111,6 +111,10 @@ Name: sandwich de milanesa de portobello portobello rebozado sin gluten, lechuga
 Price: $ 21000
 Text: sandwich de milanesa de portobello portobello rebozado sin gluten, lechuga, perejil, tomate, pickles de cebolla incluye chips de batata $ 21000
 
+Name: sandwich de pastron carne especiada, rucula, cilantro, mostaza , cebolla caramelizada, pickles de pepino. en pan sin tacc incluye chips de batata
+Price: $ 21000
+Text: sandwich de pastron carne especiada, rucula, cilantro, mostaza , cebolla caramelizada, pickles de pepino. en pan sin tacc incluye chips de batata $ 21000
+
 Name: mbeju queso, huevo poche, tomate confitado, cebolla encurtida, palta, esparrago, cilantro.
 Price: $ 21000
 Text: mbeju queso, huevo poche, tomate confitado, cebolla encurtida, palta, esparrago, cilantro. $ 21000
@@ -163,13 +167,13 @@ Name: cheesecake de frutos rojos tofu, caju, mermelada, arandanos
 Price: $ 8500
 Text: cheesecake de frutos rojos tofu, caju, mermelada, arandanos $ 8500
 
-Name: torta pistatcha tofu,caju,pistacho, matcha, ciruela
-Price: $ 10200
-Text: torta pistatcha tofu,caju,pistacho, matcha, ciruela $ 10200
-
 Name: marquisse raw de chocolate amargo. cacao noir, mani, pasas, mermelada de remolacha.
 Price: $ 8500
 Text: marquisse raw de chocolate amargo. cacao noir, mani, pasas, mermelada de remolacha. $ 8500
+
+Name: torta pistatcha tofu,caju,pistacho, matcha, ciruela
+Price: $ 10200
+Text: torta pistatcha tofu,caju,pistacho, matcha, ciruela $ 10200
 
 Name: carrot-cake. zanahoria, trigo sarraceno, miel de cana, canela, jengibre, nuez moscada. caju, naranja.
 Price: $ 11500
@@ -204,8 +208,8 @@ Price: $ 7500
 Text: kombucha jengibre  aloysia lima jazmin  reishi mandarina verde manzanilla  melena de leon yerba mate bergamota  moringa $ 7500
 
 Name: vermut vesta bebida alcoholica. tenemos seco y rosso
-Price: $ 7500
-Text: vermut vesta bebida alcoholica. tenemos seco y rosso $ 7500
+Price: $ 8500
+Text: vermut vesta bebida alcoholica. tenemos seco y rosso $ 8500
 
 Name: licuado de frutas opciones: banana, frutilla, naranja, manzana, durazno, naranja.
 Price: $ 8500 cop
