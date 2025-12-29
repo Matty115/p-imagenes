@@ -61,6 +61,10 @@ def decode_qr_code(folder_path):
 
 
 def start_qr_lecture():
+    '''
+    Inicia la lectura de códigos QR, para luego almacenar los URLs decodificados en un archivo de texto.
+    '''
+
     load_dotenv() # Carga de variables de entorno desde .env
 
     # Ubicación de la carpeta con imágenes y del archivo de salida

@@ -44,6 +44,7 @@ def url_scraping_controller(url): # Incompleta
     }
     
     try:
+        scrap = {'recognized': False, 'items': []}
         response = requests.get(url, timeout=10, headers=headers)
         if response.status_code == 200:
 
@@ -59,7 +60,6 @@ def url_scraping_controller(url): # Incompleta
             
             # Extraer información útil del HTML
             content_type = response.headers.get('Content-Type', '').split(';')[0]
-            scrap = {}
             if 'text/html' in content_type:
                 scrap = html_handler(driver)
             driver.quit()
@@ -69,10 +69,10 @@ def url_scraping_controller(url): # Incompleta
             ## PENDIENTE: Manejo de otros tipos de contenido (PDF, imágenes, etc.)
 
         else:
-            return {'status': response.status_code, 'content_type': None, 'data': {'recognized': False, 'items': []}}
+            return {'status': response.status_code, 'content_type': None, 'data': scrap}
     except requests.RequestException as e:
         print("Error al acceder al enlace:", e)
-        return {'status': None, 'content_type': None, 'data': {'recognized': False, 'items': []}}
+        return {'status': None, 'content_type': None, 'data': scrap}
 
 
 load_dotenv() # Carga de variables de entorno desde .env
@@ -106,6 +106,7 @@ with open(input_file, "r", encoding="utf-8") as f:
                 output_file = Path(save_data_path) / f"{name}_scrap.txt"
                 with open(output_file, "w", encoding="utf-8") as f:
                     f.write(f"URL: {url}\n")
+                    f.write(f"Full Text:\n{scrap['data']['full_text']}\n\n")
                     for item in scrap['data']['items']:
                         f.write(f"Name: {item['name']}\n")
                         f.write(f"Price: {item['price']}\n")

@@ -4,6 +4,7 @@ import unicodedata
 
 from bs4 import BeautifulSoup
 
+import requests
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import ElementClickInterceptedException, ElementNotInteractableException
 from selenium.webdriver.common.by import By
@@ -145,27 +146,27 @@ def classic_extraction(soup): # En proceso de mejora
     MIN_LENGTH = 10
     #MAX_LENGTH = 1000
 
-    text = normalize_text(soup.get_text(strip=True)) # Texto completo normalizado
+    compact_text = normalize_text(soup.get_text(strip=True)) # Texto completo normalizado
 
     price_pattern = r"(?:[$€₲]|(?:CLP|USD|EUR|COP|ARS|UYU|BOL|PYG))?\s?(\d{1,3}([.,]\d{3}\s?)*[.,]\d{2,3}|(\d\s?){3,})\s*(?:[$€₲]|(?:CLP|USD|EUR|COP|ARS|UYU|BOL|PYG))?" # Exp. regular relajada para detección de precios
 
     # Conteo de precios y palabras clave en el texto
-    matches = list(re.finditer(price_pattern, text, flags=re.IGNORECASE))
+    matches = list(re.finditer(price_pattern, compact_text, flags=re.IGNORECASE))
     price_count = len(matches)
 
     # Conteo de presencia de productos clave en el texto
     keywords = ['sol', 'heineken', 'stella artois'] # Necesidad de listado de productos CCU, competencia y productos, para mejorar calidad de detección !
-    keyword_hits = sum(1 for kw in keywords if kw.lower() in text.lower())
+    keyword_hits = sum(1 for kw in keywords if kw.lower() in compact_text.lower())
 
     # Si no supera los umbrales mínimos, probablemente no tiene información útil en el HTML
     recognized = price_count >= PRICES_THRESHOLD and keyword_hits >= KEYWORD_THRESHOLD
     if not recognized:
         return {
             'recognized': False,
+            'full_text': normalize_text(soup.get_text(strip=True, separator=' ')),
             'items': []
         }
 
-    processed_texts = set()
     items = []
 
     # Búsqueda en listas, tablas y divs
@@ -173,7 +174,7 @@ def classic_extraction(soup): # En proceso de mejora
         clean_block = normalize_text(el.get_text(strip=True, separator=' ')) # Texto limpio del bloque asociado a la etiqueta
 
         # Evitar bloques muy cortos o subtextos ya procesados
-        if not clean_block or len(clean_block) < MIN_LENGTH or clean_block in processed_texts:
+        if not clean_block or len(clean_block) < MIN_LENGTH:
             continue
 
         block_matches = list(re.finditer(price_pattern, clean_block, flags=re.IGNORECASE)) # Búsqueda de precios en el bloque
@@ -184,12 +185,12 @@ def classic_extraction(soup): # En proceso de mejora
             if sub_items:
                 # Almacenamiento de los items extraídos
                 items.extend(sub_items)
-                processed_texts.add(clean_block)
 
     items = filter_redundant_items(items) # Se elimina la redundancia
 
     return {
         'recognized': True,
+        'full_text': normalize_text(soup.get_text(strip=True, separator=' ')),
         'items': items
     }
 
@@ -213,18 +214,23 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
 
     # Inicialización
     url = driver.current_url
+    soup = BeautifulSoup(driver.page_source, 'html.parser')
+    text = normalize_text(soup.get_text(strip=True, separator=' '))
     out = {
         'recognized': False,
+        'full_text': text,
         'items': []
     }
 
     # Deja de buscar si ya se visitó la URL, o si no se debe visitar la URL, o si hay demasiada profundidad de búsqueda sobre URLs 
     if url in history or depth > 5 or url in BANNED_DOMAINS:
+        if url not in history:
+            history.append(url)
         return out
     
     # Se marca como revisada la URL y se le aplica extracción clásica
     history.append(url)
-    actual = classic_extraction(BeautifulSoup(driver.page_source, 'html.parser'))
+    actual = classic_extraction(soup)
 
     # Se inicializan parámetros de scroll e interacción
     step_size = 500
@@ -260,6 +266,8 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
                             class_attr = el.get_attribute('class') or ''
                             reference = href or onclick
 
+                            #print(f"Tag: {tag}, href: {href}")
+
                             # Determinación si el elemento es interactivo
                             is_interactive = (
                                 (tag == 'a' and href) or
@@ -280,6 +288,8 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
                                 continue
                             
                             # Filtro de dominios no deseados o URLs ya visitadas
+                            print(href)
+                            print(type(href))
                             is_banned_domain = any([domain in reference for domain in BANNED_DOMAINS]) # Por algún motivo, si esta condición se coloca dentro del if, no funciona bien ?!
                             if reference is not None and (is_banned_domain or reference in history):
                                 continue
@@ -302,6 +312,8 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
                                 actual['recognized'] = actual['recognized'] or new['recognized']
                                 actual['items'].extend(new['items'])
                                 actual['items'] = filter_redundant_items(actual['items'])
+                                if actual['full_text'] in new['full_text']:
+                                    actual['full_text'] = new['full_text']
 
                             # Actualización del historial y volvemos a la página anterior si cambió la URL 
                             if reference:
@@ -314,7 +326,7 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
                         continue
 
             except Exception:
-                continue
+                pass
             
     return actual
 
