@@ -256,6 +256,7 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
         for tag in ['button', 'a', 'span', 'li', 'td', 'div']:
             try:
                 elements = driver.find_elements(By.TAG_NAME, tag)
+                #print(elements)
                 for el in elements:
                     try:    
                             # Características del elemento
@@ -265,8 +266,6 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
                             role = el.get_attribute('role')
                             class_attr = el.get_attribute('class') or ''
                             reference = href or onclick
-
-                            #print(f"Tag: {tag}, href: {href}")
 
                             # Determinación si el elemento es interactivo
                             is_interactive = (
@@ -284,16 +283,25 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
                             text = normalize_text(el.text.lower())
 
                             # Filtro de elementos con términos no deseados
-                            if any(keyword in text for keyword in BANNED_TERMS):
+                            is_banned_term = False
+                            for keyword in BANNED_TERMS:
+                                if keyword in text:
+                                    is_banned_term = True
+                                    break
+                        
+                            if is_banned_term:
                                 continue
                             
                             # Filtro de dominios no deseados o URLs ya visitadas
-                            print(href)
-                            print(type(href))
-                            is_banned_domain = any([domain in reference for domain in BANNED_DOMAINS]) # Por algún motivo, si esta condición se coloca dentro del if, no funciona bien ?!
+                            # Esta forma ahorra algo de memoria y es más estable, y por ende confiable
+                            is_banned_domain = False
+                            for domain in BANNED_DOMAINS:
+                                if domain in reference:
+                                    is_banned_domain = True
+                                    break
+
                             if reference is not None and (is_banned_domain or reference in history):
                                 continue
-                            
                             old_html = driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML")
                             el.click() # Click en el elemento
                             WebDriverWait(driver, 10).until(
