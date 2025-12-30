@@ -195,6 +195,97 @@ def classic_extraction(soup): # En proceso de mejora
     }
 
 
+def is_interactive(element):
+    '''
+    Determina si un elemento HTML es interactivo (clickeable).
+
+    Parámetros:
+    - element: Elemento HTML a evaluar.
+
+    Retorna:
+    - bool: True si el elemento es interactivo, False en caso contrario.
+    '''
+
+    tag = element.tag_name.lower()
+    href = element.get_attribute('href')
+    onclick = element.get_attribute('onclick')
+    role = element.get_attribute('role')
+    class_attr = element.get_attribute('class') or ''
+
+    # Determinación si el elemento es interactivo
+    is_interactive = (
+        (tag == 'a' and href) or
+        (role and 'link' in role.lower() and href) or
+        (tag == 'button') or
+        onclick or
+        (role and 'button' in role.lower()) or
+        ('button' in class_attr.lower() or 'accordion' in class_attr.lower())
+    )
+
+    has_url = (
+        (tag == 'a' and href) or
+        (role and 'link' in role.lower() and href)
+    )
+
+    return is_interactive, bool(has_url)
+
+
+def handle_tag(tag, driver, history):
+    '''
+    Maneja el procesamiento de un tag HTML específico para la extracción interactiva.
+
+    Parámetros:
+    - tag (str): Nombre del tag HTML a procesar.
+
+    Retorna:
+    - None
+    '''
+    valid_references = set()
+    try:
+        elements = driver.find_elements(By.TAG_NAME, tag)
+        if tag == 'a':
+            print(f"Número de enlaces encontrados: {len(elements)}")
+        for el in elements:
+     
+            # Discriminación de elementos no interactivos
+            interactive, has_url = is_interactive(el)
+            if not interactive:
+                continue
+            
+            if has 
+            href = el.get_attribute('href')
+            onclick = el.get_attribute('onclick')
+            reference = href if href else (onclick if onclick else None)
+            
+            text = normalize_text(el.text.lower())
+
+            # Filtro de elementos con términos no deseados
+            is_banned_term = False
+            for keyword in BANNED_TERMS:
+                if keyword in text:
+                    is_banned_term = True
+                    break
+        
+            if is_banned_term:
+                continue
+            
+            # Filtro de dominios no deseados o URLs ya visitadas
+            # Esta forma ahorra algo de memoria y es más estable, y por ende confiable
+            is_banned_domain = False
+            for domain in BANNED_DOMAINS:
+                if domain in reference:
+                    is_banned_domain = True
+                    break
+
+            if reference is not None and (is_banned_domain or reference in history):
+                continue
+
+    except Exception:
+        pass
+
+    return 
+
+
 def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proceso de mejora
     '''
     Extracción interactiva de precios y nombres de productos desde una página web utilizando Selenium a partir de la interacción con elementos, como hacer clic en botones o enlaces para expandir contenido dinámico. De esta manera, para cada nuevo contenido cargado, se aplica extracción clásica recursivamente.
@@ -254,32 +345,24 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
 
         # Interacción con elementos
         for tag in ['button', 'a', 'span', 'li', 'td', 'div']:
+            valid_references = set()
             try:
                 elements = driver.find_elements(By.TAG_NAME, tag)
-                #print(elements)
-                for el in elements:
+                if tag == 'a':
+                    print(f"Número de enlaces encontrados: {len(elements)}")
+                for i, el in enumerate(elements):
+                    if tag == 'a':
+                        print(f"TEXTO:{el.text}, número {i+1}/{len(elements)}")
                     try:    
-                            # Características del elemento
-                            tag = el.tag_name.lower()
-                            href = el.get_attribute('href')
-                            onclick = el.get_attribute('onclick')
-                            role = el.get_attribute('role')
-                            class_attr = el.get_attribute('class') or ''
-                            reference = href or onclick
-
-                            # Determinación si el elemento es interactivo
-                            is_interactive = (
-                                (tag == 'a' and href) or
-                                (tag == 'button') or
-                                onclick or
-                                (role and 'button' in role.lower()) or
-                                ('button' in class_attr.lower() or 'accordion' in class_attr.lower())
-                            )
                             
                             # Discriminación de elementos no interactivos
-                            if not is_interactive:
+                            if not is_interactive(el):
                                 continue
 
+                            href = el.get_attribute('href')
+                            onclick = el.get_attribute('onclick')
+                            reference = href if href else (onclick if onclick else None)
+                            
                             text = normalize_text(el.text.lower())
 
                             # Filtro de elementos con términos no deseados
@@ -302,6 +385,8 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
 
                             if reference is not None and (is_banned_domain or reference in history):
                                 continue
+
+
                             old_html = driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML")
                             el.click() # Click en el elemento
                             WebDriverWait(driver, 10).until(

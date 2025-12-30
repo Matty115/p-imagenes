@@ -93,7 +93,7 @@ for file in save_data_path.glob("*"):
 with open(input_file, "r", encoding="utf-8") as f:
     for line in f:
         name, url = [el.strip() for el in line.split(",")]
-        if not url or 'cervantes' not in url:
+        if not url or 'birra' not in url:
             print(f"{name}: No se detectó dirección URL.")
             continue
 
