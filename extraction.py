@@ -160,39 +160,38 @@ def classic_extraction(soup): # En proceso de mejora
 
     # Si no supera los umbrales mínimos, probablemente no tiene información útil en el HTML
     recognized = price_count >= PRICES_THRESHOLD and keyword_hits >= KEYWORD_THRESHOLD
-    if not recognized:
-        return {
-            'recognized': False,
-            'full_text': normalize_text(soup.get_text(strip=True, separator=' ')),
-            'items': []
-        }
-
-    items = []
-
-    # Búsqueda en listas, tablas y divs
-    for el in soup.find_all(['li', 'tr', 'p', 'td', 'div']):
-        clean_block = normalize_text(el.get_text(strip=True, separator=' ')) # Texto limpio del bloque asociado a la etiqueta
-
-        # Evitar bloques muy cortos o subtextos ya procesados
-        if not clean_block or len(clean_block) < MIN_LENGTH:
-            continue
-
-        block_matches = list(re.finditer(price_pattern, clean_block, flags=re.IGNORECASE)) # Búsqueda de precios en el bloque
-
-        if block_matches:
-            sub_items = split_multi_item_block(clean_block, block_matches) # División en sub-items si hay múltiples precios en el bloque
-
-            if sub_items:
-                # Almacenamiento de los items extraídos
-                items.extend(sub_items)
-
-    items = filter_redundant_items(items) # Se elimina la redundancia
-
+    
     return {
-        'recognized': True,
+        'recognized': recognized,
         'full_text': normalize_text(soup.get_text(strip=True, separator=' ')),
-        'items': items
     }
+
+    # items = []
+
+    # # Búsqueda en listas, tablas y divs
+    # for el in soup.find_all(['li', 'tr', 'p', 'td', 'div']):
+    #     clean_block = normalize_text(el.get_text(strip=True, separator=' ')) # Texto limpio del bloque asociado a la etiqueta
+
+    #     # Evitar bloques muy cortos o subtextos ya procesados
+    #     if not clean_block or len(clean_block) < MIN_LENGTH:
+    #         continue
+
+    #     block_matches = list(re.finditer(price_pattern, clean_block, flags=re.IGNORECASE)) # Búsqueda de precios en el bloque
+
+    #     if block_matches:
+    #         sub_items = split_multi_item_block(clean_block, block_matches) # División en sub-items si hay múltiples precios en el bloque
+
+    #         if sub_items:
+    #             # Almacenamiento de los items extraídos
+    #             items.extend(sub_items)
+
+    # items = filter_redundant_items(items) # Se elimina la redundancia
+
+    # return {
+    #     'recognized': True,
+    #     'full_text': normalize_text(soup.get_text(strip=True, separator=' ')),
+    #     'items': items
+    # }
 
 
 def is_interactive(element):
@@ -222,12 +221,7 @@ def is_interactive(element):
         ('button' in class_attr.lower() or 'accordion' in class_attr.lower())
     )
 
-    has_url = (
-        (tag == 'a' and href) or
-        (role and 'link' in role.lower() and href)
-    )
-
-    return is_interactive, bool(has_url)
+    return is_interactive
 
 
 def handle_tag(tag, driver, history):
@@ -241,52 +235,70 @@ def handle_tag(tag, driver, history):
     - None
     '''
     valid_references = set()
+    final_text = ""
     try:
         elements = driver.find_elements(By.TAG_NAME, tag)
-        if tag == 'a':
-            print(f"Número de enlaces encontrados: {len(elements)}")
-        for el in elements:
-     
-            # Discriminación de elementos no interactivos
-            interactive, has_url = is_interactive(el)
-            if not interactive:
-                continue
-            
-            if has 
-            href = el.get_attribute('href')
-            onclick = el.get_attribute('onclick')
-            reference = href if href else (onclick if onclick else None)
-            
-            text = normalize_text(el.text.lower())
-
-            # Filtro de elementos con términos no deseados
-            is_banned_term = False
-            for keyword in BANNED_TERMS:
-                if keyword in text:
-                    is_banned_term = True
-                    break
-        
-            if is_banned_term:
-                continue
-            
-            # Filtro de dominios no deseados o URLs ya visitadas
-            # Esta forma ahorra algo de memoria y es más estable, y por ende confiable
-            is_banned_domain = False
-            for domain in BANNED_DOMAINS:
-                if domain in reference:
-                    is_banned_domain = True
-                    break
-
-            if reference is not None and (is_banned_domain or reference in history):
-                continue
-
     except Exception:
-        pass
+        return final_text, valid_references
+    for el in elements:
+    
+        # Discriminación de elementos no interactivos
+        interactive = is_interactive(el)
+        if not interactive:
+            continue
 
-    return 
+        href = el.get_attribute('href')
+        onclick = el.get_attribute('onclick')
+        reference = href if href else (onclick if onclick else None)
+        
+        el_text = normalize_text(el.text.lower())
+
+        # Filtro de elementos con términos no deseados
+        is_banned_term = False
+        for keyword in BANNED_TERMS:
+            if keyword in el_text:
+                is_banned_term = True
+                break
+    
+        if is_banned_term:
+            continue
+        
+        # Filtro de dominios no deseados o URLs ya visitadas
+        # Esta forma ahorra algo de memoria y es más estable, y por ende confiable
+        is_banned_domain = False
+        for domain in BANNED_DOMAINS:
+            if domain in reference:
+                is_banned_domain = True
+                break
+
+        if reference is not None:
+            if is_banned_domain or reference in history:
+                continue
+            valid_references.add(reference)
+        else:
+            old_html = driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML")
+            el.click()
+            try:
+                WebDriverWait(driver, 10).until(
+                    lambda d: d.find_element(By.TAG_NAME, "body").get_attribute("innerHTML") != old_html
+                )
+
+            except Exception:
+                continue
+
+            soup = BeautifulSoup(driver.page_source, 'html.parser')
+            new_text = normalize_text(soup.get_text(strip=True, separator=' '))
+            if new_text in final_text:
+                continue
+            if final_text in new_text:
+                final_text = new_text
+            else:
+                final_text = f"{final_text}\n{new_text}"
+
+    return final_text, valid_references
 
 
-def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proceso de mejora
+def interactive_extraction(driver, max_time=60, history=set(), depth=0): # En proceso de mejora
     '''
     Extracción interactiva de precios y nombres de productos desde una página web utilizando Selenium a partir de la interacción con elementos, como hacer clic en botones o enlaces para expandir contenido dinámico. De esta manera, para cada nuevo contenido cargado, se aplica extracción clásica recursivamente.
 
@@ -310,17 +322,15 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
     out = {
         'recognized': False,
         'full_text': text,
-        'items': []
     }
 
     # Deja de buscar si ya se visitó la URL, o si no se debe visitar la URL, o si hay demasiada profundidad de búsqueda sobre URLs 
     if url in history or depth > 5 or url in BANNED_DOMAINS:
-        if url not in history:
-            history.append(url)
+        history.add(url)
         return out
     
     # Se marca como revisada la URL y se le aplica extracción clásica
-    history.append(url)
+    history.add(url)
     actual = classic_extraction(soup)
 
     # Se inicializan parámetros de scroll e interacción
@@ -345,86 +355,31 @@ def interactive_extraction(driver, max_time=60, history=[], depth=0): # En proce
 
         # Interacción con elementos
         for tag in ['button', 'a', 'span', 'li', 'td', 'div']:
-            valid_references = set()
-            try:
-                elements = driver.find_elements(By.TAG_NAME, tag)
-                if tag == 'a':
-                    print(f"Número de enlaces encontrados: {len(elements)}")
-                for i, el in enumerate(elements):
-                    if tag == 'a':
-                        print(f"TEXTO:{el.text}, número {i+1}/{len(elements)}")
-                    try:    
+            actual['full_text'], references = handle_tag(tag, driver, history)
+            for ref in references:
+                if ref not in history:
+                    history.add(ref)
+                    try:
+                        driver.get(ref)
+                        time.sleep(2)
+                        sub_scrap = interactive_extraction(driver, max_time - (time.time() - start), history, depth + 1)
+                        actual['recognized'] = actual['recognized'] or sub_scrap['recognized']
+                        if sub_scrap['full_text'] in actual['full_text']:
+                            continue
+                        if actual['full_text'] in sub_scrap['full_text']:
+                            actual['full_text'] = sub_scrap['full_text']
+                        else:
+                            actual['full_text'] = f"{actual['full_text']}\n{sub_scrap['full_text']}"
                             
-                            # Discriminación de elementos no interactivos
-                            if not is_interactive(el):
-                                continue
-
-                            href = el.get_attribute('href')
-                            onclick = el.get_attribute('onclick')
-                            reference = href if href else (onclick if onclick else None)
-                            
-                            text = normalize_text(el.text.lower())
-
-                            # Filtro de elementos con términos no deseados
-                            is_banned_term = False
-                            for keyword in BANNED_TERMS:
-                                if keyword in text:
-                                    is_banned_term = True
-                                    break
-                        
-                            if is_banned_term:
-                                continue
-                            
-                            # Filtro de dominios no deseados o URLs ya visitadas
-                            # Esta forma ahorra algo de memoria y es más estable, y por ende confiable
-                            is_banned_domain = False
-                            for domain in BANNED_DOMAINS:
-                                if domain in reference:
-                                    is_banned_domain = True
-                                    break
-
-                            if reference is not None and (is_banned_domain or reference in history):
-                                continue
-
-
-                            old_html = driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML")
-                            el.click() # Click en el elemento
-                            WebDriverWait(driver, 10).until(
-                                lambda d: d.find_element(By.TAG_NAME, "body").get_attribute("innerHTML") != old_html
-                            )
-                            
-                            # Nueva página tras la interacción
-                            new_html = driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML")
-                            new_url = driver.current_url
-
-                            # Si el HTML cambió, se llama a html_handler
-                            if new_html != old_html:
-                                new = html_handler(driver, max_time - (time.time() - start), history, depth + 1)
-
-                                # Se incorporan resultados de la extracción
-                                actual['recognized'] = actual['recognized'] or new['recognized']
-                                actual['items'].extend(new['items'])
-                                actual['items'] = filter_redundant_items(actual['items'])
-                                if actual['full_text'] in new['full_text']:
-                                    actual['full_text'] = new['full_text']
-
-                            # Actualización del historial y volvemos a la página anterior si cambió la URL 
-                            if reference:
-                                history.append(reference)
-                            if new_url != url:
-                                history.append(new_url)
-                                driver.back()
-                                
-                    except (ElementClickInterceptedException, ElementNotInteractableException):
+                        history.add(driver.current_url)
+                          
+                    except Exception:
                         continue
-
-            except Exception:
-                pass
             
     return actual
 
 
-def html_handler(driver, max_time=60, history=[], depth=0): # Incompleta, potencial cambio de orden de procedimientos
+def html_handler(driver, max_time=60, history=set(), depth=0): # Incompleta, potencial cambio de orden de procedimientos
     '''
     Maneja el procesamiento de HTML para extraer información útil, combinando extracción clásica y extracción interactiva si es necesario.
 
