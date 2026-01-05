@@ -44,7 +44,7 @@ def url_scraping_controller(url): # Incompleta
     }
     
     try:
-        scrap = {'recognized': False, 'items': []}
+        scrap = {'recognized': False, 'full_text': ''}
         response = requests.get(url, timeout=10, headers=headers)
         if response.status_code == 200:
 
@@ -93,22 +93,17 @@ for file in save_data_path.glob("*"):
 with open(input_file, "r", encoding="utf-8") as f:
     for line in f:
         name, url = [el.strip() for el in line.split(",")]
-        if not url or 'birra' not in url:
+        if not url:
             print(f"{name}: No se detectó dirección URL.")
             continue
 
         else:
             scrap = url_scraping_controller(url) # Scraping del URL, información estructurada en texto plano
-            print(f"{name}: {url} -> scrap: status {scrap['status']}, cantidad de elementos: {len(scrap['data']['items'])}")
+            print(f"{name}: {url} -> scrap: status {scrap['status']}")
             
             # Almacenamiento del texto plano en archivo !
-            if scrap['data']['items']:
+            if scrap['data']['recognized']:
                 output_file = Path(save_data_path) / f"{name}_scrap.txt"
                 with open(output_file, "w", encoding="utf-8") as f:
                     f.write(f"URL: {url}\n")
                     f.write(f"Full Text:\n{scrap['data']['full_text']}\n\n")
-                    for item in scrap['data']['items']:
-                        f.write(f"Name: {item['name']}\n")
-                        f.write(f"Price: {item['price']}\n")
-                        f.write(f"Text: {item['text']}\n")
-                        f.write("\n")

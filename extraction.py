@@ -6,8 +6,9 @@ from bs4 import BeautifulSoup
 
 import requests
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import ElementClickInterceptedException, ElementNotInteractableException
+from selenium.common.exceptions import ElementClickInterceptedException, ElementNotInteractableException, StaleElementReferenceException
 from selenium.webdriver.common.by import By
+from rapidfuzz import fuzz 
 
 try:
     import truststore
@@ -15,7 +16,7 @@ try:
 except Exception:
     pass
 
-BANNED_DOMAINS = ["whatsapp.com","facebook.com","instagram.com","twitter.com","tiktok.com","youtube.com","wix.com","x.com","wa.me","wa.link","linkedin.com","messenger.com","snapchat.com","drive.google.com/?tab=oo","play.google.com"]
+BANNED_DOMAINS = ["whatsapp.com","facebook.com","instagram.com","twitter.com","tiktok.com","youtube.com","wix.com","x.com","wa.me","wa.link","linkedin.com","messenger.com","snapchat.com","drive.google.com/?tab=oo","play.google.com", "workspace.google.com", "linktr.ee/products", "linktr.ee/s/", "support.google.com", "linktr.ee/blog", "linktr.ee/help", "threads.com", "linktr.ee/universal-login", "linktr.ee/?utm_source=linktree", "linktr.ee/discover", "linktr.ee/forgot-username", "about.google", "firebase.google.com", "firebase.studio", "medium.com"] # !!!!! Un modelo aquí y abajo podrían ser muy útiles
 BANNED_TERMS = ['whatsapp', 'facebook', 'instagram', 'twitter', 'tiktok', 'youtube', 'wix', 'acceder', 'iniciar sesion', 'registrarse', 'suscribirse', 'comprar', 'pagar', 'donar', 'descargar', 'contacto', 'contactanos', 'contacta', 'llamanos', 'mensajeria', 'messenger', 'linkedin', 'snapchat', 'google drive', 'play store']
 
 def normalize_text(text):
@@ -142,9 +143,7 @@ def classic_extraction(soup): # En proceso de mejora
 
     # Parámetros de umbralización
     PRICES_THRESHOLD = 10
-    KEYWORD_THRESHOLD = 1 
-    MIN_LENGTH = 10
-    #MAX_LENGTH = 1000
+    KEYWORD_THRESHOLD = 1
 
     compact_text = normalize_text(soup.get_text(strip=True)) # Texto completo normalizado
 
@@ -159,7 +158,7 @@ def classic_extraction(soup): # En proceso de mejora
     keyword_hits = sum(1 for kw in keywords if kw.lower() in compact_text.lower())
 
     # Si no supera los umbrales mínimos, probablemente no tiene información útil en el HTML
-    recognized = price_count >= PRICES_THRESHOLD and keyword_hits >= KEYWORD_THRESHOLD
+    recognized = price_count >= PRICES_THRESHOLD or keyword_hits >= KEYWORD_THRESHOLD
     
     return {
         'recognized': recognized,
@@ -204,12 +203,15 @@ def is_interactive(element):
     Retorna:
     - bool: True si el elemento es interactivo, False en caso contrario.
     '''
+    try:
+        tag = element.tag_name.lower()
+        href = element.get_attribute('href')
+        onclick = element.get_attribute('onclick')
+        role = element.get_attribute('role')
+        class_attr = element.get_attribute('class') or ''
 
-    tag = element.tag_name.lower()
-    href = element.get_attribute('href')
-    onclick = element.get_attribute('onclick')
-    role = element.get_attribute('role')
-    class_attr = element.get_attribute('class') or ''
+    except StaleElementReferenceException:
+        return False
 
     # Determinación si el elemento es interactivo
     is_interactive = (
@@ -238,6 +240,7 @@ def handle_tag(tag, driver, history):
     final_text = ""
     try:
         elements = driver.find_elements(By.TAG_NAME, tag)
+        print(f"Encontrados {len(elements)} elementos <{tag}> para procesar.")
     except Exception:
         return final_text, valid_references
     for el in elements:
@@ -267,7 +270,7 @@ def handle_tag(tag, driver, history):
         # Esta forma ahorra algo de memoria y es más estable, y por ende confiable
         is_banned_domain = False
         for domain in BANNED_DOMAINS:
-            if domain in reference:
+            if reference and domain in reference:
                 is_banned_domain = True
                 break
 
@@ -276,8 +279,13 @@ def handle_tag(tag, driver, history):
                 continue
             valid_references.add(reference)
         else:
+
             old_html = driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML")
-            el.click()
+            try:
+                el.click()
+            except (ElementClickInterceptedException, ElementNotInteractableException):
+                continue
+
             try:
                 WebDriverWait(driver, 10).until(
                     lambda d: d.find_element(By.TAG_NAME, "body").get_attribute("innerHTML") != old_html
@@ -298,7 +306,23 @@ def handle_tag(tag, driver, history):
     return final_text, valid_references
 
 
-def interactive_extraction(driver, max_time=60, history=set(), depth=0): # En proceso de mejora
+def seen_or_banned(url, history):
+    seen = False
+    for link in history:
+        if url in link:
+            seen = True
+            break
+    
+    banned = False
+    for domain in BANNED_DOMAINS:
+        if domain in url:
+            banned = True
+            break
+
+    return seen or banned
+
+
+def interactive_extraction(driver, max_time=60, history=None, depth=0): # En proceso de mejora
     '''
     Extracción interactiva de precios y nombres de productos desde una página web utilizando Selenium a partir de la interacción con elementos, como hacer clic en botones o enlaces para expandir contenido dinámico. De esta manera, para cada nuevo contenido cargado, se aplica extracción clásica recursivamente.
 
@@ -319,19 +343,28 @@ def interactive_extraction(driver, max_time=60, history=set(), depth=0): # En pr
     url = driver.current_url
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     text = normalize_text(soup.get_text(strip=True, separator=' '))
+
+    if history is None:
+        history = set()
+
     out = {
         'recognized': False,
         'full_text': text,
     }
 
-    # Deja de buscar si ya se visitó la URL, o si no se debe visitar la URL, o si hay demasiada profundidad de búsqueda sobre URLs 
-    if url in history or depth > 5 or url in BANNED_DOMAINS:
+    # Deja de buscar si ya se visitó la URL, o si no se debe visitar la URL, o si hay demasiada profundidad de búsqueda sobre URLs
+    reviewed = seen_or_banned(url, history)
+    print(f"URL revisada o prohibida: {reviewed}, profundidad: {depth}, URL: {url}")
+    
+    # Se marca como revisada la URL y se le aplica extracción clásica
+    
+    actual = classic_extraction(soup)
+
+    if reviewed or depth >= 5:
         history.add(url)
         return out
     
-    # Se marca como revisada la URL y se le aplica extracción clásica
     history.add(url)
-    actual = classic_extraction(soup)
 
     # Se inicializan parámetros de scroll e interacción
     step_size = 500
@@ -357,12 +390,18 @@ def interactive_extraction(driver, max_time=60, history=set(), depth=0): # En pr
         for tag in ['button', 'a', 'span', 'li', 'td', 'div']:
             actual['full_text'], references = handle_tag(tag, driver, history)
             for ref in references:
-                if ref not in history:
-                    history.add(ref)
+                if not seen_or_banned(ref, history):
                     try:
+                        old_html = driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML")
                         driver.get(ref)
-                        time.sleep(2)
-                        sub_scrap = interactive_extraction(driver, max_time - (time.time() - start), history, depth + 1)
+                        try:
+                            WebDriverWait(driver, 10).until(
+                                lambda d: d.find_element(By.TAG_NAME, "body").get_attribute("innerHTML") != old_html
+                            )
+
+                        except Exception:
+                            continue
+                        sub_scrap = html_handler(driver, max_time - (time.time() - start), history, depth + 1)
                         actual['recognized'] = actual['recognized'] or sub_scrap['recognized']
                         if sub_scrap['full_text'] in actual['full_text']:
                             continue
@@ -372,14 +411,17 @@ def interactive_extraction(driver, max_time=60, history=set(), depth=0): # En pr
                             actual['full_text'] = f"{actual['full_text']}\n{sub_scrap['full_text']}"
                             
                         history.add(driver.current_url)
-                          
+                        driver.back()
+                        
                     except Exception:
                         continue
+
+                history.add(ref)
             
     return actual
 
 
-def html_handler(driver, max_time=60, history=set(), depth=0): # Incompleta, potencial cambio de orden de procedimientos
+def html_handler(driver, max_time=60, history=None, depth=0): # Incompleta, potencial cambio de orden de procedimientos
     '''
     Maneja el procesamiento de HTML para extraer información útil, combinando extracción clásica y extracción interactiva si es necesario.
 
