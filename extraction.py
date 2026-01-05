@@ -240,7 +240,6 @@ def handle_tag(tag, driver, history):
     final_text = ""
     try:
         elements = driver.find_elements(By.TAG_NAME, tag)
-        print(f"Encontrados {len(elements)} elementos <{tag}> para procesar.")
     except Exception:
         return final_text, valid_references
     for el in elements:
@@ -354,7 +353,6 @@ def interactive_extraction(driver, max_time=60, history=None, depth=0): # En pro
 
     # Deja de buscar si ya se visitó la URL, o si no se debe visitar la URL, o si hay demasiada profundidad de búsqueda sobre URLs
     reviewed = seen_or_banned(url, history)
-    print(f"URL revisada o prohibida: {reviewed}, profundidad: {depth}, URL: {url}")
     
     # Se marca como revisada la URL y se le aplica extracción clásica
     
